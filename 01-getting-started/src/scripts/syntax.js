@@ -40,7 +40,7 @@ const functionGroup1 = {
     },
 
     // Function below test if else conditions;
-    definePass: (item) => {
+    isOverFifty: (item) => {
         if (item > 49) return "sucess";
         else return "failed";
     },
@@ -52,21 +52,25 @@ const functionGroup1 = {
     },
 
     // Function below excutes several array methods;
-    addArrStart: (arr) => {
-        arr.unshift("Steve");
-        return arr[0];
+    addArrStart: (arr, item) => {
+        arr.unshift(item);
+        let newArr = arr;
+        return newArr;
     },
-    addArrEnd: (arr) => {
-        arr.push("Steve");
-        return arr[arr.length - 1];
+    addArrEnd: (arr, item) => {
+        arr.push(item);
+        let newArr = arr;
+        return newArr;
     },
-    changeArrIdx: (arr) => {
-        arr[0] = "Wendy";
-        return arr[0];
+    changeArrIdx: (arr, item, idx) => {
+        arr[idx] = item;
+        let newArr = arr;
+        return newArr;
     },
 
     // Functions below runs different loop method
     forLoop: (arr) => {
+        //combine string in an arr
         let myString = '';
         for (let i = 0; i<arr.length; i++){
             myString += arr[i]
@@ -74,6 +78,7 @@ const functionGroup1 = {
         return myString;
     },
     forInLoop: (obj) => {
+        //combine string in an obj
         let myString2 = '';
         let item;
         for (item in obj){
@@ -82,6 +87,7 @@ const functionGroup1 = {
         return myString2;
     },
     whileLoop: (data) => {
+        //adding string if condition is less than three
         let i = 0;
         let myString3 = '';
         while (i < 3){
@@ -91,6 +97,7 @@ const functionGroup1 = {
         return myString3;
     },
     doWhileLoop: (data) => {
+        //combine string once
         let i = 0;
         let myString4 = '';
         do {
@@ -101,6 +108,7 @@ const functionGroup1 = {
         return myString4;
     },
     forEachfunction: (arr) => {
+        //combine string in an arr
         let colors ='the three colors are';
         arr.forEach((x)=> colors+= ` ${x}`);
         return colors;
@@ -108,6 +116,7 @@ const functionGroup1 = {
 
     //object manipulation
     objReadFirstKey: (obj) => {
+        //read first key/value of the object
         let arr = Object.entries(obj);
         return `the first property is ${arr[0][0]} and the value is ${arr[0][1]}`
     }
