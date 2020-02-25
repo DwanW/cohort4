@@ -19,3 +19,20 @@ document.getElementById("calculate").addEventListener('click',
             method.value);
     })
 );
+
+/* My Tax Calculator eventListeners */
+document.getElementById("income").addEventListener("change",
+    (() => {
+        document.getElementById("tax").textContent = functions.calculateTax(
+            Number(income.value)
+        );
+    })
+);
+
+document.getElementById("income").addEventListener("click",
+    (() => {
+        document.getElementById("tax").textContent = functions.calculateTax(
+            Number(income.value)
+        );
+    })
+);

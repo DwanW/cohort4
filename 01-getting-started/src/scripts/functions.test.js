@@ -31,3 +31,12 @@ test('is my calculator working?', () => {
     expect(functions.calculate(1,2,'divide')).toBe(0.5);
     expect(functions.calculate(81,9,'divide')).toBe(9);
 });
+
+test("is my tax calculated correctly?", ()=>{
+    expect(functions.calculateTax(1)).toBe("$ 0.15");
+    expect(functions.calculateTax(2)).toBe("$ 0.30");
+    expect(functions.calculateTax(50000)).toBe("$ 7630.35");
+    expect(functions.calculateTax(100000)).toBe("$ 18541.11");
+    expect(functions.calculateTax(150000)).toBe("$ 31211.10");
+    expect(functions.calculateTax(250000)).toBe("$ 61796.26");
+})

@@ -20,7 +20,8 @@ html {
 
 .bgimg-1,
 .bgimg-2,
-.bgimg-3 {
+.bgimg-3,
+.bgimg-4 {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -53,7 +54,7 @@ html {
     opacity: 0.5;
 }
 
-/* Three image (Size) */
+/* Third image (Calculator) */
 
 .bgimg-3 {
     /* background-image: url("https://www.w3schools.com/w3images/parallax2.jpg"); */
@@ -67,6 +68,22 @@ html {
     background-color:rgba(0,0,0,0.5);
     min-height: 400px;
 }
+
+/* Forth image (Canadian Tax) */
+
+.bgimg-4 {
+    /* background-image: url("https://www.w3schools.com/w3images/parallax2.jpg"); */
+    background-image: url("https://cdn.pixabay.com/photo/2017/09/07/08/54/money-2724248_1280.jpg");
+    min-height: 400px;
+    opacity: 0.7;
+}
+.bgimg-4:before{
+    content:"";
+    display:block;
+    background-color:rgba(0,0,0,0.5);
+    min-height: 400px;
+}
+
 
 
 .w3-wide {
@@ -125,12 +142,12 @@ html {
     width:0;  
 }
 ::placeholder {
-    color: white;
+    color: gray;
     opacity: 0.7; 
   }
   
 ::-ms-input-placeholder { 
-    color: white;
+    color: gray;
     opacity: 0.7; 
   }
 #firstNumber::-webkit-inner-spin-button, #secondNumber::-webkit-inner-spin-button {
@@ -219,4 +236,24 @@ html {
     border-radius: 5px;
     min-width: 100px;
     height:fit-content;
+}
+
+/* CANADIAN TAX CSS */
+#income::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+#income{
+    text-align: center;
+    width: 180px;
+    font-size: 2rem;
+    margin: 20px 0px;
+}
+.fa-arrow-circle-down{
+    color: red; 
+    margin: 20px 0px;
+}
+
+#tax {
+    font-family: 'Roboto';
+    font-size: 4rem;
 }
