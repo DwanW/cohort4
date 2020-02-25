@@ -16,6 +16,29 @@ const functions = {
         return num1 - num2;
     },
 
+    multiply: (num1, num2) => {
+        return num1*num2;
+    },
+
+    divide: (num1, num2) => {
+        return num1/num2;
+    },
+
+    calculate: (num1, num2, method)=> {
+        switch(method){
+            case 'add':
+                return functions.add(num1, num2);
+                break;
+            case 'subtract':
+                return functions.subtract(num1, num2);
+                break;
+            case 'multiply':
+                return functions.multiply(num1, num2);
+                break
+            case 'divide':
+                return functions.divide(num1,num2);
+        }
+    },
     isEven: (num) => {
         if (num < Number.MAX_VALUE){
             let remainder = num % 2;

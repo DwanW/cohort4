@@ -20,3 +20,14 @@ test('is the number even?', () => {
     expect(functions.isEven(1)).toBe(false);
     expect(functions.isEven(1.2e1000)).toBe("number is too big");
 });
+
+test('is my calculator working?', () => {
+    expect(functions.calculate(1,2,'add')).toBe(3);
+    expect(functions.calculate(6,5,'add')).toBe(11);
+    expect(functions.calculate(10,3,'subtract')).toBe(7);
+    expect(functions.calculate(19,2,'subtract')).toBe(17);
+    expect(functions.calculate(33,3,'multiply')).toBe(99);
+    expect(functions.calculate(7,9,'multiply')).toBe(63);
+    expect(functions.calculate(1,2,'divide')).toBe(0.5);
+    expect(functions.calculate(81,9,'divide')).toBe(9);
+});
