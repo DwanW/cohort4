@@ -96,7 +96,7 @@ html {
 
 /* calculator css */
 .label{
-    padding-right: 150px;
+    padding-right: 20px;
 }
 .label-list {
     display:flex;
@@ -107,10 +107,6 @@ html {
     padding:0px 10px;
     margin: 0 5px;
     font-size: 0.8rem;
-}
-.label-list li:nth-child(4){
-    margin-left: 0px;
-    padding-left: 0px;
 }
 .label-list :first-child{
     margin-left:0;
@@ -204,6 +200,7 @@ html {
     color:white;
     transition: 0.3s;
     text-align: center;
+    margin: 20px 0px;
 }
 #calculate:hover{
     transform:scale(1.7);
