@@ -21,7 +21,8 @@ html {
 .bgimg-1,
 .bgimg-2,
 .bgimg-3,
-.bgimg-4 {
+.bgimg-4,
+.bgimg-5 {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -84,7 +85,18 @@ html {
     min-height: 400px;
 }
 
-
+.bgimg-5 {
+    /* background-image: url("https://www.w3schools.com/w3images/parallax2.jpg"); */
+    background-image: url(https://cdn.pixabay.com/photo/2016/11/29/11/52/coder-1869306_1280.jpg);
+    min-height: 400px;
+    opacity: 0.7;
+}
+.bgimg-5:before{
+    content:"";
+    display:block;
+    background-color:rgba(0,0,0,0.5);
+    min-height: 400px;
+}
 
 .w3-wide {
     letter-spacing: 10px;
@@ -256,4 +268,19 @@ html {
 #tax {
     font-family: 'Roboto';
     font-size: 4rem;
+}
+
+/* Working with Data Structures */
+#section-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.box-container {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    border: solid 3px black;
+    padding: 30px 20px;
+    margin: 20px;
 }

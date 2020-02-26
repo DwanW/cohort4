@@ -8,6 +8,8 @@ const functions = {
         return "extra large";
     },
 
+    //calculator functions
+
     add: (num1, num2) => {
         return num1 + num2;
     },
@@ -40,6 +42,7 @@ const functions = {
         }
     },
 
+    //tax calculation function
     calculateTax: (num) => {
         return (num > 214368)? `$ ${((num - 214368) * 0.33 + 49644.31).toFixed(2)}` :
         (num > 150473)? `$ ${((num - 150473) * 0.29 + 31114.76).toFixed(2)}` :
@@ -47,6 +50,8 @@ const functions = {
         (num > 48535)? `$ ${((num - 48535) * 0.205 + 7280.25).toFixed(2)}` :
         `$ ${(num * 0.15).toFixed(2)}`;
     },
+
+    //example
 
     isEven: (num) => {
         if (num < Number.MAX_VALUE){
@@ -58,6 +63,27 @@ const functions = {
             };
         } else {
             return "number is too big";
+        }
+    },
+
+    //array block button functions
+    addArrayInput: (item, arr) => {
+        arr.push(item);
+        return arr;
+    },
+
+    sumArrayInput: (arr) => {
+        let total = 0;
+        arr.forEach((e)=> total+=e)
+        return total;
+    },
+
+    //dictionary block button functions
+    lookUpKey: (property, object) => {
+        if (object.hasOwnProperty(property)){
+            return object[property];
+        } else {
+            return "no such key in the dictionary";
         }
     }
 };

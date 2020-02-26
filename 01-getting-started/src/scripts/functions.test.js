@@ -35,8 +35,20 @@ test('is my calculator working?', () => {
 test("is my tax calculated correctly?", ()=>{
     expect(functions.calculateTax(1)).toBe("$ 0.15");
     expect(functions.calculateTax(2)).toBe("$ 0.30");
-    expect(functions.calculateTax(50000)).toBe("$ 7630.35");
-    expect(functions.calculateTax(100000)).toBe("$ 18541.11");
-    expect(functions.calculateTax(150000)).toBe("$ 31211.10");
-    expect(functions.calculateTax(250000)).toBe("$ 61796.26");
-})
+    expect(functions.calculateTax(50000)).toBe("$ 7580.57");
+    expect(functions.calculateTax(100000)).toBe("$ 17991.78");
+    expect(functions.calculateTax(150000)).toBe("$ 30991.78");
+    expect(functions.calculateTax(250000)).toBe("$ 61402.87");
+});
+
+test("is my array method working correctly?", ()=>{
+    expect(functions.addArrayInput(1, [])).toEqual([1]);
+    expect(functions.addArrayInput("bobby", [3,8,1])).toEqual([3,8,1,"bobby"]);
+    expect(functions.sumArrayInput([5,8,0,4])).toBe(17);
+    expect(functions.sumArrayInput([3,99,7,5])).toBe(114);
+});
+
+test("is my dictionary method working correctly?", ()=>{
+    expect(functions.lookUpKey("AB", {"AB":"Alberta", "BC":"British Columbia"})).toBe("Alberta");
+    expect(functions.lookUpKey("PE", {"NL":"Newfoundland and Labrador", "PE":"Prince Edward Island"})).toBe("Prince Edward Island");
+});
