@@ -15,7 +15,7 @@ test('Check the Syntax', () => {
     expect(functionGroup1.defineVar(undefined)).toBe("undefined");
 
     expect(functionGroup1.isOverFifty(49)).toBe("failed");
-    expect(functionGroup1.isOverFifty(50)).toBe("sucess");
+    expect(functionGroup1.isOverFifty(50)).toBe("success");
     
     expect(functionGroup1.defineFunction(1,3)).toBe(4);
     expect(functionGroup1.defineFunction("my"," polo")).toBe("my polo");

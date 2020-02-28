@@ -33,7 +33,7 @@ const functionGroup1 = {
         if (typeof item === "object"){
             if (Array.isArray(item) === true) return "array";
             if (item === null)  return "null";
-            return "object"
+            return "object";
         }
         if (typeof item === "undefined") return "undefined";
         return "not identified";
@@ -41,7 +41,7 @@ const functionGroup1 = {
 
     // Function below test if else conditions;
     isOverFifty: (item) => {
-        if (item > 49) return "sucess";
+        if (item > 49) return "success";
         else return "failed";
     },
 
