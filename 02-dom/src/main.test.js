@@ -1,27 +1,33 @@
-test('displays a user after a click', () => {
+import functions from './functions.js';
+
+test('is my add click working', () => {
     // Set up our document body
     document.body.innerHTML =
-    '<div id="body-container" class="container">' +
-        '<h1>Basic DOM</h1>' +
-        '<div class="list-section">' +
-            '<div>This is a list of stuff</div>' +
-            '<ol id="list">' +
-                '<li>item 1</li>' +
-                '<li>item 2</li>' +
-                '<li>item 3</li>' +
-            '</ol>' +
-        '</div>' +
-        '<button id="show">Show</button>' +
+        '<div>' +
+        '<ol id="list">' +
+        '<li>item 1</li>' +
+        '<li>item 2</li>' +
+        '<li>item 3</li>' +
+        '</ol>' +
         '<button id="add">Add</button>' +
         '<button id="add-start">Add start</button>' +
         '<button id="remove">Remove</button>' +
         '<button id="remove-end">Remove end</button>' +
-    '</div>';
-  
+        '</div>';
+
     //emulate a click on our button
-    document.getElementById('show').click();
-  
-    // Assert that the fetchCurrentUser function was called, and that the
-    // #username span's inner text was updated as we'd expect it to.
-    expect($('#username').text()).toEqual('Johnny Cash - Logged In');
-  });
+    document.getElementById("add").addEventListener("click", () => functions.add());
+    document.getElementById("add-start").addEventListener('click', () => functions.addStart());
+    document.getElementById("remove").addEventListener('click', () => functions.remove());
+    document.getElementById("remove-end").addEventListener('click', () => functions.removeEnd());
+
+    document.getElementById('add').click();
+    expect(document.querySelectorAll("ol li").length).toBe(4);
+    document.getElementById('add-start').click();
+    expect(document.querySelectorAll("ol li")[0].innerHTML).toBe('new item');
+    document.getElementById('remove').click();
+    expect(document.querySelectorAll("ol li").length).toBe(4);
+    document.getElementById('remove-end').click();
+    expect(document.querySelectorAll("ol li")[2].innerHTML).toBe('item 3');
+
+});
