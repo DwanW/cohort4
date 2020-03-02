@@ -67,7 +67,8 @@ document.getElementById("arrayTotal").addEventListener("click",
 
 document.getElementById("arrayClear").addEventListener("click",
     (() => {
-        arrayValue = initialArrayState;
+        arrayValue = [];
+        console.log(initialArrayState);
         return document.getElementById("arrayMsg").textContent = "array has been cleared";
     })
 );
