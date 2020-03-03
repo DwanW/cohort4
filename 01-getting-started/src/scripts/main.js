@@ -44,7 +44,8 @@ arrayValue = initialArrayState;
 
 document.getElementById("arrayAdd").addEventListener("click",
     (() => {
-        if (isNaN(arrayInput.value) === false ){
+        if (isNaN(arrayInput.value) === false && arrayInput.value !== '' ){
+            console.log(typeof arrayInput.value);
             functions.addArrayInput(Number(arrayInput.value), arrayValue);
             return document.getElementById("arrayMsg").textContent = `${arrayInput.value} has been added to the array`;
         } else {
