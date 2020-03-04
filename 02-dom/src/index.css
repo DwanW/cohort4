@@ -17,3 +17,19 @@
     max-height: 50vh;
     overflow-y: auto;
 }
+.cardhead {
+    width: fit-content;
+    font-size: 24px;
+    margin:auto;
+}
+.cardbox {
+    text-align: center;
+    width: 400px;
+    box-shadow: 3px 1px 7px 1px rgba(116, 116, 116, 0.7);
+    margin: 25px;
+}
+
+.delete {
+    display:block;
+    margin:auto;
+}

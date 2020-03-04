@@ -1,27 +1,20 @@
 
 const functions = {
-    add: () => {
-        var node = document.createElement("li");
-        var textnode = document.createTextNode("new item");
+    add: (node, textnode, listId) => {
         node.appendChild(textnode);
-        document.getElementById('list').appendChild(node);
+        return document.getElementById(listId).appendChild(node);
     },
 
-    addStart: () => {
-        var node = document.createElement("li");
-        var textnode = document.createTextNode("new item");
+    addStart: (node, textnode, listnode) => {
         node.appendChild(textnode);
-        var nodelist = document.getElementById("list");
-        nodelist.insertBefore(node, nodelist.childNodes[0]);
+        return listnode.insertBefore(node, listnode.children[0]);
     },
 
-    remove: () => {
-        var list = document.getElementById("list");
+    remove: (list) => {
         list.removeChild(list.firstElementChild);
     },
 
-    removeEnd: () => {
-        var list = document.getElementById("list");
+    removeEnd: (list) => {
         list.removeChild(list.lastElementChild);
     }
 }
