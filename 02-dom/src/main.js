@@ -51,17 +51,17 @@ document.getElementById("cardBasket").addEventListener("click", (e) => {
     if (e.target && e.target.className === 'delete'){
         e.target.parentNode.parentNode.removeChild(e.target.parentNode);
     } else if (e.target && e.target.className === 'addafter'){
-        if (e.target.parentNode.parentNode.children.length === 1){
-            let cardbox = document.createElement("div");
-            functions.createCard(cardbox,cardID);
-            cardBasket.appendChild(cardbox);
-            cardID++;
-        } else {
+        // if (e.target.parentNode.parentNode.children.length === 1){
+        //     let cardbox = document.createElement("div");
+        //     functions.createCard(cardbox,cardID);
+        //     cardBasket.appendChild(cardbox);
+        //     cardID++;
+        // } else {
             let cardbox = document.createElement("div");
             functions.createCard(cardbox,cardID);
             e.target.parentNode.parentNode.insertBefore(cardbox, e.target.parentNode.nextSibling);
             cardID++;
-        }
+        // }
     } else if (e.target && e.target.className === 'addbefore'){
         let cardbox = document.createElement("div");
         functions.createCard(cardbox,cardID);

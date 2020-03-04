@@ -65,22 +65,30 @@ test('is my card clicks working', () => {
     let cardBasket = document.getElementById("cardBasket");
     cardBasket.appendChild(cardbox);
     cardbox.appendChild(cardheader);
+    expect(cardbox.children.length).toBe(1);
     console.log(cardbox.children.length);
+    expect(cardbox.textContent).toBe('card');
     console.log(cardbox.textContent);
 
     let button1 = document.createElement("button");
     let button1txt = document.createTextNode("Add Before");
     button1.appendChild(button1txt);
+    expect(button1.textContent).toBe("Add Before");
 
     let button2 = document.createElement("button");
     let button2txt = document.createTextNode("Add After");
     button2.appendChild(button2txt);
+    expect(button2.textContent).toBe("Add After");
+
 
     let button3 = document.createElement("button");
     let button3txt = document.createTextNode("Delete");
     button3.appendChild(button3txt);
+    expect(button3.textContent).toBe("Delete");
     cardbox.appendChild(button1);
+    expect(cardbox.children.length).toBe(2);
     cardbox.appendChild(button2);
+    expect(cardbox.children.length).toBe(3);
     cardbox.appendChild(button3);
-    console.log(cardbox.children.length);
+    expect(cardbox.children.length).toBe(4);
 });
