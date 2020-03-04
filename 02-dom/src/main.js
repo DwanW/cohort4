@@ -14,62 +14,60 @@ document.getElementById("show").addEventListener('click', () => {
 document.getElementById("add").addEventListener("click", () => {
     let node = document.createElement("li");
     let textnode = document.createTextNode("new item");
-    functions.add(node, textnode, 'list')});
+    functions.add(node, textnode, 'list')
+});
 
 document.getElementById("add-start").addEventListener('click', () => {
     let node = document.createElement("li");
     let textnode = document.createTextNode("new item");
     let nodelist = document.getElementById("list");
-    functions.addStart(node, textnode, nodelist)});
+    functions.addStart(node, textnode, nodelist)
+});
 
 document.getElementById("remove").addEventListener('click', () => {
     let list = document.getElementById("list");
-    functions.remove(list)});
+    functions.remove(list)
+});
 
 document.getElementById("remove-end").addEventListener('click', () => {
     let list = document.getElementById("list");
-    functions.removeEnd(list)});
+    functions.removeEnd(list)
+});
 
 
 // event lisntener for cards, and what I'm feeling right now? (╯°□°）╯︵ ┻━┻)
 
-// document.querySelectorAll('delete').addEventListener('click', (e) => {
-//     console.log(e.target);
-// });
+var cardID = 1;
 
 document.getElementById("addCard").addEventListener('click', () => {
-    //create card box
-    let cardbox= document.createElement("div");
+    //append card box
+    let cardbox = document.createElement("div");
+    functions.createCard(cardbox,cardID);
     cardBasket.appendChild(cardbox);
+    cardID++;
+});
 
-    //create card header
-    let cardheader = document.createElement("div");
-    let cardtext = document.createTextNode("card");
-    cardheader.appendChild(cardtext);
-
-    cardheader.classList.add('cardhead');
-
-    //create card header inside card box
-    cardbox.appendChild(cardheader);
-
-    cardbox.classList.add('cardbox');
-
-    //create three button and text inside 
-    let button1 = document.createElement("button");
-    let button1txt = document.createTextNode("Add Before");
-    button1.appendChild(button1txt);
-
-    let button2 = document.createElement("button");
-    let button2txt = document.createTextNode("Add After");
-    button2.appendChild(button2txt);
-
-    let button3 = document.createElement("button");
-    let button3txt = document.createTextNode("Delete");
-    button3.appendChild(button3txt);
-    cardbox.appendChild(button1);
-    cardbox.appendChild(button2);
-    cardbox.appendChild(button3);
-    
-    button3.classList.add('delete');
-
+document.getElementById("cardBasket").addEventListener("click", (e) => {
+    if (e.target && e.target.className === 'delete'){
+        e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+    } else if (e.target && e.target.className === 'addafter'){
+        if (e.target.parentNode.parentNode.children.length === 1){
+            let cardbox = document.createElement("div");
+            functions.createCard(cardbox,cardID);
+            cardBasket.appendChild(cardbox);
+            cardID++;
+        } else {
+            let cardbox = document.createElement("div");
+            functions.createCard(cardbox,cardID);
+            e.target.parentNode.parentNode.insertBefore(cardbox, e.target.parentNode.nextSibling);
+            cardID++;
+        }
+    } else if (e.target && e.target.className === 'addbefore'){
+        let cardbox = document.createElement("div");
+        functions.createCard(cardbox,cardID);
+        e.target.parentNode.parentNode.insertBefore(cardbox, e.target.parentNode);
+        cardID++;
+    }
 })
+
+//parentNode
