@@ -36,7 +36,6 @@ const functionGroup1 = {
             return "object";
         }
         if (typeof item === "undefined") return "undefined";
-        return "not identified";
     },
 
     // Function below test if else conditions;

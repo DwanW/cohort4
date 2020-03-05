@@ -38,6 +38,7 @@ test("is my tax calculated correctly?", ()=>{
     expect(functions.calculateTax(50000)).toBe("$ 7580.57");
     expect(functions.calculateTax(100000)).toBe("$ 17991.78");
     expect(functions.calculateTax(150000)).toBe("$ 30991.78");
+    expect(functions.calculateTax(180000)).toBe("$ 39677.59");
     expect(functions.calculateTax(250000)).toBe("$ 61402.87");
 });
 
@@ -51,4 +52,5 @@ test("is my array method working correctly?", ()=>{
 test("is my dictionary method working correctly?", ()=>{
     expect(functions.lookUpKey("AB", {"AB":"Alberta", "BC":"British Columbia"})).toBe("Alberta");
     expect(functions.lookUpKey("PE", {"NL":"Newfoundland and Labrador", "PE":"Prince Edward Island"})).toBe("Prince Edward Island");
+    expect(functions.lookUpKey("CD", {"AB":"Alberta", "BC":"British Columbia"})).toBe("no such key in the dictionary");
 });

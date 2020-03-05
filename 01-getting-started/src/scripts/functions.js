@@ -30,13 +30,10 @@ const functions = {
         switch(method){
             case 'add':
                 return functions.add(num1, num2);
-                break;
             case 'subtract':
                 return functions.subtract(num1, num2);
-                break;
             case 'multiply':
                 return functions.multiply(num1, num2);
-                break
             case 'divide':
                 return functions.divide(num1,num2);
         }
