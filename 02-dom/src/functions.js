@@ -50,6 +50,9 @@ const functions = {
     button1.classList.add('addbefore');
     button2.classList.add('addafter');
     button3.classList.add('delete');
+    console.log(cardbox);
+    return cardbox;
+    
     }
 }
 export default functions;

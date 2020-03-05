@@ -91,4 +91,18 @@ test('is my card clicks working', () => {
     expect(cardbox.children.length).toBe(3);
     cardbox.appendChild(button3);
     expect(cardbox.children.length).toBe(4);
+
+});
+
+test('is my card created', () => {
+    document.body.innerHTML = 
+    `<div class="cardbox">`+
+    `<div class="cardhead">Card 1</div>`+
+    `<button class="addbefore">Add Before</button>`+
+    `<button class="addafter">Add After</button>` +
+    `<button class="delete">Delete</button>`+
+    `</div>`;
+    let cardbox= document.createElement("div");
+    console.log(document.body.childNodes[0]);
+    expect(functions.createCard(cardbox, 1)).toEqual(document.body.childNodes[0]);
 });
