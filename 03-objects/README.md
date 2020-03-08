@@ -1,1 +1,1 @@
-class wooooo
+class and object wooooo
