@@ -1,4 +1,4 @@
-import Acc from './account.js';
+import {Account, AccountController } from './account.js';
 
 const functions = {
     createAccCardBox: (cardbox, accObj) => {
@@ -51,7 +51,7 @@ const functions = {
 }
 
 
-let acc1 = new Acc("Dwan", 100);
+let acc1 = new Account("Dwan", 100);
 let cardbox = document.createElement("div");
 functions.createAccCardBox(cardbox, acc1);
 root.appendChild(cardbox);
