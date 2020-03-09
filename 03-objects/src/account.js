@@ -30,9 +30,8 @@ class AccountController  {
     }
 
     deleteAcc(accName){
-        this.accArr.forEach((obj, idx)=> {
-            (obj.accName === accName) ? this.accArr.splice(idx,1) : this.accArr;
-        })
+        this.accArr.forEach((obj, idx)=> 
+            (obj.accName === accName) ? this.accArr.splice(idx,1) : this.accArr);
     }
 
     renameAcc(accName, newName){
@@ -41,18 +40,30 @@ class AccountController  {
         })
     }
 
+    getTotal(){
+        let total = 0;
+        this.accArr.forEach((obj)=> {
+            total += obj.totalBalance;
+        })
+        return total;
+    }
+
     getMax(){
         let max = 0;
+        let hAccName = '';
         this.accArr.forEach((obj)=> {
-            (obj.totalBalance > max) ? max = object.totalBalance : max;
+            (obj.totalBalance > max) ? (max= obj.totalBalance, hAccName= obj.accName) : max;
         })
+        return hAccName;
     }
     
     getMin(){
         let min = this.accArr[0].totalBalance;
+        let lAccName = this.accArr[0].accName;
         this.accArr.forEach((obj)=> {
-            (obj.totalBalance < min) ? min = object.totalBalance : min;
+            (obj.totalBalance < min) ? (min = obj.totalBalance, lAccName = obj.accName) : min;
         })
+        return lAccName;
     }
 };
 
