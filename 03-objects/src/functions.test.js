@@ -1,5 +1,5 @@
 import {Account, AccountController } from './account.js';
-import functions from './index.js';
+import functions from './functions.js';
 
 test("is my account dom working?", () => {
     document.body.innerHTML = 
