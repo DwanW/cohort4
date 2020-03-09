@@ -1,4 +1,4 @@
-import functions from './functions.js';
+// import functions from './functions.js';
 
 export default class Account {
     constructor(accName, totalBalance){
@@ -15,6 +15,6 @@ export default class Account {
     }
 
     balance(){
-        return `${this.accName} have a total balance of $${this.totalBalance}`
+        return `Account ${this.accName} total balance: $${this.totalBalance}`
     }
 };
