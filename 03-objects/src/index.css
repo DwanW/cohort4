@@ -123,10 +123,15 @@ button:focus {
     padding: 5px 20px;
     display: flex;
     justify-content: flex-start;
-    background-color: silver;
+    background-color: rgba(192, 192, 192, 0.301);
     border-radius: 7px;
     z-index: 3;
 }
+@media screen and (max-width: 600px) {
+    #control-container {
+      width: calc(100vw - 50px);
+    }
+  }
 
 #getTotal {
     margin-left: auto;
@@ -183,4 +188,13 @@ button:focus {
     padding-top: 25px;
     font-size: 1.4rem;
     color: Blue
+}
+
+.delete {
+    font-size: 18px;
+    color: white;
+    background-color: red;
+    position: absolute;
+    bottom: 2px;
+    right: 0;
 }

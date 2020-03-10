@@ -10,6 +10,7 @@ test("is my account dom working?", () => {
     `<button class="withdraw">Withdraw</button>`+
     `<button class="show">Show</button>`+
     `<div class="result"></div>`+
+    `<button class="delete"><i class="fa fa-user-times"></i></button>`+
     `</div>`;
     let acc1 = new Account("Bob", 1000);
     let cardbox = document.createElement("div");

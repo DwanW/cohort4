@@ -22,7 +22,10 @@ document.getElementById("root").addEventListener('click', (e) => {
         myAccController.accArr.forEach((accObj) => {
             (accObj.accName === searchName)? accObj = e.target.parentNode.children[5].textContent = accObj.balance(): accObj
         })
-    } 
+    } else if (e.target && e.target.className === 'delete') {
+        e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+        myAccController.deleteAcc(searchName);
+    }
 })
 
 document.getElementById('addAcc').addEventListener('click', () => {
@@ -67,8 +70,8 @@ window.addEventListener('click', (e) => {
     if (!document.getElementById('name-prompt').contains(e.target) && 
         !document.getElementById("control-container").contains(e.target) &&
         !document.getElementById("name-prompt").contains(e.target)){
-        document.getElementById('name-prompt').classList.add("hide")
-        document.getElementById('info-prompt').classList.add("hide");;
+        document.getElementById('name-prompt').classList.add("hide");
+        document.getElementById('info-prompt').classList.add("hide");
     }
 })
 
