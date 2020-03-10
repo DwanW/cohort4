@@ -3,12 +3,6 @@ import functions from './functions.js'
 
 let myAccController = new AccountController([]);
 
-
-// let acc1 = new Account("Dwan", 100);
-// let cardbox = document.createElement("div");
-// functions.createAccCardBox(cardbox, acc1);
-// document.getElementById("root").appendChild(cardbox);
-
 document.getElementById("root").addEventListener('click', (e) => {
     let searchName = e.target.parentNode.children[0].textContent;
     if (e.target && e.target.className === 'deposit') {
@@ -39,7 +33,24 @@ document.getElementById('addAcc').addEventListener('click', () => {
 document.getElementById('getTotal').addEventListener('click', () => {
     document.getElementById('info-prompt').classList.remove("hide");
     document.getElementById('name-prompt').classList.add("hide");
+    let sum = myAccController.getTotal();
+    document.getElementById('info-panel').textContent = `Total balance of all your accounts are $ ${sum}`;
 })
+
+document.getElementById('getMax').addEventListener('click', () => {
+    document.getElementById('info-prompt').classList.remove("hide");
+    document.getElementById('name-prompt').classList.add("hide");
+    let max = myAccController.getMax();
+    document.getElementById('info-panel').textContent = `Account with Highest balance is ${max}`;
+})
+
+document.getElementById('getMin').addEventListener('click', () => {
+    document.getElementById('info-prompt').classList.remove("hide");
+    document.getElementById('name-prompt').classList.add("hide");
+    let min = myAccController.getMin();
+    document.getElementById('info-panel').textContent = `Account with Highest balance is ${min}`;
+})
+
 
 document.getElementById('create-acc').addEventListener('click', () => {
     //todo account name has to be unique;
