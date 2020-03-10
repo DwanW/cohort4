@@ -2,6 +2,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: roboto;
 }
 body {
     background: radial-gradient(ellipse at bottom, #c5e4fd 0%, transparent);
@@ -15,6 +16,7 @@ body {
     padding: 25px;
 }
 
+/* Card Css */
 .accCard {
     margin: 20px;
     height: 350px;
@@ -36,7 +38,6 @@ body {
     width: 100%;
     text-align: center;
     color: white;
-    font-family: roboto;
     font-size: 20px;
     font-weight: 200;
     padding: 10px;  
@@ -48,7 +49,7 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
-input:focus {
+.inputbox:focus {
     outline: none;
     width: 180px;
 }
@@ -111,4 +112,71 @@ button:focus {
     right: 0;
     font-family: "roboto";
     font-size: 20px;
+}
+
+/* Controller CSS */
+#control-container {
+    position: fixed;
+    bottom: 8%;
+    border : 1px solid skyblue;
+    width: calc(60vw - 50px);
+    padding: 5px 20px;
+    display: flex;
+    justify-content: flex-start;
+    background-color: silver;
+    border-radius: 7px;
+    z-index: 3;
+}
+
+#getTotal {
+    margin-left: auto;
+}
+
+/* Prompt window Css */
+.hide {
+    display: none;
+}
+.name-prompt{
+    box-shadow: 1px 1px 5px 1px silver;
+    padding: 20px;
+    background-color: white;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    min-height: 200px;
+    max-width: 600px;
+    margin: 10% auto;
+}
+.prompt-header{
+    width: fit-content;
+    margin: auto;
+    font-size: 1.75rem;
+    padding: 5px 0px;
+}
+#name-prompt-action{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid gray;
+}
+.promptinput {
+    width: 180px;
+    height: 20px;
+    padding: 10px;
+    margin: 20px auto;
+    border:none;
+    transition: 0.4s;
+    border-bottom: 1px solid black;
+    font-size: 16px;
+    text-align: center;
+}
+.promptinput:focus {
+    outline: none;
+    width: 220px;
+}
+
+#info-panel {
+    border-top: 1px solid black;
 }

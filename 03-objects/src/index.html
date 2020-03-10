@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -10,9 +11,29 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <script type="module" src='index.js'></script>
 </head>
+
 <body>
     <div id="root">
-
+        <div id="control-container">
+            <button id="addAcc">Add Acc</button>
+            <button id="getTotal">Total</button>
+            <button id="getMax">Max</button>
+            <button id="getMin">Min</button>
+        </div>
+        <div class="hide name-prompt" id="name-prompt">
+            <div class="prompt-header">Creating New Account</div>
+            <div id="name-prompt-action">
+                <input class ="promptinput" type="text" id="accName" placeholder="Enter Account Name">
+                <input class ="promptinput" type="number" id="accBalance" placeholder="Enter Balance">
+                <button id="create-acc">Create this Accout</button>
+            </div>
+        </div>
+        <div class="hide name-prompt" id="info-prompt">
+            <div class="prompt-header">Account Information</div>
+            <div id = "info-panel">
+            </div>
+        </div>
     </div>
 </body>
+
 </html>
