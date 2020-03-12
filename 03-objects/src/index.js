@@ -51,7 +51,7 @@ document.getElementById('getMin').addEventListener('click', () => {
     document.getElementById('info-prompt').classList.remove("hide");
     document.getElementById('name-prompt').classList.add("hide");
     let min = myAccController.getMin();
-    document.getElementById('info-panel').textContent = `Account with Highest balance is ${min}`;
+    document.getElementById('info-panel').textContent = `Account with Lowest balance is ${min}`;
 })
 
 
