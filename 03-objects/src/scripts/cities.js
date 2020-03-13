@@ -9,7 +9,7 @@ class City {
     }
 
     show() {
-        return `${this.name}${this.latitude}${this.longitude}${this.population}`;
+        return `${this.name} ${this.latitude} ${this.longitude} ${this.population}`;
     }
 
     movedIn(num) {
@@ -21,57 +21,69 @@ class City {
     }
 
     howBig(){
-        this.population > 100000 ? "City":
-        this.population > 20000 ? "Large Town" :
-        this.population > 1000 ? "Town" :
-        this.population > 100 ? "Village" : Hamlet;
+        return (this.population > 100000) ? "City":
+        (this.population > 20000) ? "Large Town" :
+        (this.population > 1000) ? "Town" :
+        (this.population > 100) ? "Village" : "Hamlet";
     }
 };
 
 class Community  {
-    constructor(accArr){
-        this.accArr = accArr;
+    constructor(cityArr){
+        this.cityArr = cityArr;
     }
 
-    whichSphere(){
-        return `Northern Hemisphere or Southern Hemisphere`;
+    whichSphere(cityObj){
+        if (cityObj.latitude.match("N")){
+            return "North Hemisphere";
+        } else if(cityObj.latitude.match("S")){
+            return "South Hemisphere";
+        } else {
+            return "Equator";
+        }
     }
 
-    getMostNorthern(accName){
-        this.accArr.forEach((obj, idx)=> 
-            (obj.accName === accName) ? this.accArr.splice(idx,1) : this.accArr);
-    }
-
-    getMostsouthern(accName, newName){
-        this.accArr.forEach((obj)=> {
-            (obj.accName === accName) ? obj.accName = newName : obj.accName;
+    getMostNorthern(){
+        let mostN = 0;
+        let cityName = '';
+        this.cityArr.forEach((city)=> {
+            if (city.latitude.includes('° N')){
+                let latitudeNum = Number(city.latitude.replace('° N', ''));
+                (latitudeNum > mostN) ? (mostN = latitudeNum, cityName = city.name) :mostN;
+            }
         })
+        return cityName;
+    }
+
+    getMostSouthern(){
+        let mostS = 0;
+        let cityName = '';
+        this.cityArr.forEach((city)=> {
+            if (city.latitude.includes('° S')){
+                let latitudeNum = Number(city.latitude.replace('° S', ''));
+                (latitudeNum > mostS) ? (mostS = latitudeNum, cityName = city.name) :mostS;
+            }
+        })
+        return cityName;
     }
 
     getPopulation (){
         let total = 0;
-        this.accArr.forEach((obj)=> {
-            total += obj.totalBalance;
+        this.cityArr.forEach((city)=> {
+            total += city.population;
         })
         return total;
     }
 
-    createCity(){
-        let max = 0;
-        let hAccName = '';
-        this.accArr.forEach((obj)=> {
-            (obj.totalBalance > max) ? (max= obj.totalBalance, hAccName= obj.accName) : max;
-        })
-        return hAccName;
+    createCity(name, lat, long, pop){
+        let newCity = new City(name, lat, long, pop);
+        let tempArr = [...this.cityArr,newCity];
+        this.cityArr = tempArr;
     }
     
-    deleteCity(){
-        let min = this.accArr[0].totalBalance;
-        let lAccName = this.accArr[0].accName;
-        this.accArr.forEach((obj)=> {
-            (obj.totalBalance < min) ? (min = obj.totalBalance, lAccName = obj.accName) : min;
-        })
-        return lAccName;
+    deleteCity(cityName){
+        this.cityArr.forEach((city, idx)=> 
+            (city.name === cityName) ? this.cityArr.splice(idx,1) : this.accArr);
     }
 };
 

@@ -6,6 +6,7 @@ const functions = {
     getAllFirstNames:(data)=> {
         return data.map((person)=> person.name);
     },
+    
     url: 'https://uinames.com/api/?amount=10',
 
     async getUsers() {
