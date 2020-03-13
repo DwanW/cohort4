@@ -3,13 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' type='text/css' media='screen' href='index2.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./index2.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <script type="module" src='index2.js'></script>
-    <title>Document</title>
+    <script type="module" src='./index2.js'></script>
+    <title>City</title>
 </head>
 <body>
+    <div id="root">
+        <div id="control-container">
+            <button id="addCity">Create City</button>
+            <button id="getTotal">Population</button>
+            <button id="getN">Most North</button>
+            <button id="getS">Most South</button>
+        </div>
+        <div class="hide name-prompt" id="name-prompt">
+            <div class="prompt-header">Creating New City</div>
+            <div id="name-prompt-action">
+                <input class ="promptinput" type="text" id="cityName" placeholder="Enter City Name">
+                <input class ="promptinput" type="text" id="cityLat" placeholder="Enter Latitude">
+                <input class ="promptinput" type="text" id="cityLong" placeholder="Enter Longitude">
+                <input class ="promptinput" type="number" id="cityPop" placeholder="Enter Population">
+                <button id="create-city">Create this City</button>
+            </div>
+        </div>
+        <div class="hide name-prompt" id="info-prompt">
+            <div class="prompt-header">City Information</div>
+            <div id = "info-panel">
+            </div>
+        </div>
+    </div>
     
 </body>
 </html>
