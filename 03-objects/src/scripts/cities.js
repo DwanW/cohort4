@@ -82,8 +82,10 @@ class Community  {
     }
     
     deleteCity(cityName){
+        let deleteCity;
         this.cityArr.forEach((city, idx)=> 
-            (city.name === cityName) ? this.cityArr.splice(idx,1) : this.accArr);
+            (city.name === cityName) ? (deleteCity = {"key":idx, ...city}, this.cityArr.splice(idx,1)) : this.accArr);
+        return deleteCity;
     }
 };
 

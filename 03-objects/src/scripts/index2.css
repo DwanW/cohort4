@@ -17,7 +17,7 @@ body {
 }
 
 /* Card Css */
-.accCard {
+.cityCard {
     margin: 20px;
     height: 350px;
     background: linear-gradient(to bottom, rgb(0, 45, 243) 60%, rgb(240, 240, 211) 30%);
@@ -34,7 +34,7 @@ body {
     }
   }
 
-.accHeader {
+.cityHeader {
     width: 100%;
     text-align: center;
     color: white;
@@ -91,12 +91,12 @@ button:focus {
     outline:none;
     box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, 0.247);
 }
-.deposit { 
+.movein { 
     background-color: #52b202; 
     color: white;
     border: 2px solid #387c018e;
 }
-.withdraw    { 
+.moveout    { 
     background-color: #52b202; 
     color: white;
     border: 2px solid #387c01a6;
