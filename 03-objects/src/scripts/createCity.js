@@ -30,28 +30,22 @@ const createCityBox = (cardbox, cityObj) => {
     let button3txt = document.createTextNode("Show");
     button3.appendChild(button3txt);
 
-    let button4 = document.createElement("button");
-    let button4txt = document.createTextNode("How Big");
-    button4.appendChild(button4txt);
-    
-
     cardbox.appendChild(button1);
     cardbox.appendChild(button2);
     cardbox.appendChild(button3);
-    cardbox.appendChild(button4);
 
     button1.classList.add('movein');
     button2.classList.add('moveout');
-    button3.classList.add('show+sphere');
+    button3.classList.add('show');
 
     let cardValue = document.createElement("div");
     cardValue.classList.add('result');
     cardbox.appendChild(cardValue);
 
-    let button5 = document.createElement("button");
-    button5.innerHTML = '<i class="fa fa-user-times"></i>';
-    button5.classList.add('delete');
-    cardbox.appendChild(button5);
+    let button4 = document.createElement("button");
+    button4.innerHTML = '<i class="fa fa-user-times"></i>';
+    button4.classList.add('delete');
+    cardbox.appendChild(button4);
     return cardbox;
 }
 

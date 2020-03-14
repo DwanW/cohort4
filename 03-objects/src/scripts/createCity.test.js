@@ -8,8 +8,7 @@ test("is my city dom working?", () => {
     `<input class="inputbox" placeholder="Enter population here" type="number" />`+
     `<button class="movein">Move In</button>`+
     `<button class="moveout">Move Out</button>`+
-    `<button class="show+sphere">Show</button>`+
-    `<button>How Big</button>`+
+    `<button class="show">Show</button>`+
     `<div class="result"></div>`+
     `<button class="delete"><i class="fa fa-user-times" /></button>`+
     `</div>`;

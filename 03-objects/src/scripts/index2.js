@@ -18,43 +18,103 @@ const getData = async () => {
 const initData = async () => {
     const data = await getData();
     console.log(data);
-    let MyCommunity = new Community(data);
-    console.log(MyCommunity);
+    let cData = [];
+    data.forEach((obj) => {
+        let cities = new City(obj.name, obj.latitude, obj.longitude, Number(obj.population));
+        cData = [...cData,cities];
+    });
+    let MyCommunity = new Community(cData);
+    console.log(cData);
 
     //event listeners
+    console.log(MyCommunity.cityArr)
+
+    MyCommunity.cityArr.forEach((obj) => {
+        let cardbox = document.createElement("div");
+        createCityBox(cardbox, obj);
+        document.getElementById('root').appendChild(cardbox);
+    })
+
     document.getElementById("root").addEventListener('click', async (e) => {
         let searchName = e.target.parentNode.children[0].textContent;
         if (e.target && e.target.className === 'movein') {
             // console.log(e.target.parentNode.children[1].value)
-            MyCommunity.cityArr.forEach((cityObj) => {
-                (cityObj.name === searchName) ? cityObj = cityObj.moveIn(Number(e.target.parentNode.children[1].value)) : cityObj
+            let updatedObj;
+            MyCommunity.cityArr.forEach((cityObj, idx) => {
+                (cityObj.name === searchName) ? cityObj = (updatedObj = cityObj, cityObj.movedIn(Number(e.target.parentNode.children[1].value))) : cityObj;
             })
+            const nData = await getData();
+            let updatedServerObj;
+            nData.forEach((obj)=>{
+                (obj.name === updatedObj.name)? (updatedServerObj = {"key":obj.key,...updatedObj}):obj;
+            })
+            console.log(updatedObj);
+            const response = await fetch(url + "update", {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify(updatedServerObj)
+            });
+            const newData = await response.json();
+            console.log(newData);
             // console.log(MyCommunity.cityArr);
         } else if (e.target && e.target.className === 'moveout') {
             // console.log(e.target.parentNode.children[1].value)
-            MyCommunity.cityArr.forEach((cityObj) => {
-                (cityObj.name === searchName) ? cityObj = cityObj.moveOut(Number(e.target.parentNode.children[1].value)) : cityObj
+            let updatedObj;
+            MyCommunity.cityArr.forEach((cityObj, idx) => {
+                (cityObj.name === searchName) ? (updatedObj = cityObj, cityObj.movedOut(Number(e.target.parentNode.children[1].value))) : cityObj
             })
+            const nData = await getData();
+            let updatedServerObj;
+            nData.forEach((obj)=>{
+                (obj.name === updatedObj.name)? (updatedServerObj = {"key":obj.key,...updatedObj}):obj;
+            })
+            
+            const response = await fetch(url + "update", {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify(updatedServerObj)
+            });
+            const newData = await response.json();
+            console.log(newData);
         } else if (e.target && e.target.className === 'show') {
             MyCommunity.cityArr.forEach((cityObj) => {
-                (cityObj.name === searchName) ? cityObj = e.target.parentNode.children[5].textContent = cityObj.show().concat(cityObj.howbig()) : cityObj
+                (cityObj.name === searchName) ? cityObj = e.target.parentNode.children[6].textContent = cityObj.show()+" population, with a size of " + cityObj.howBig() + " located " + MyCommunity.whichSphere(cityObj) : cityObj
             })
         } else if (e.target && e.target.className === 'delete') {
             e.target.parentNode.parentNode.removeChild(e.target.parentNode);
             //post remove data
             let deleteData = MyCommunity.deleteCity(searchName);
+            const nData = await getData(); 
+            let deleteServerData;
+            nData.forEach((obj)=>{
+                (obj.name === deleteData.name)? deleteServerData = obj :obj;
+            })
             const response = await fetch(url + "delete", {
-                method: 'POST', 
+                method: 'POST',
                 mode: 'cors',
                 cache: 'no-cache',
-                credentials: 'same-origin', 
+                credentials: 'same-origin',
                 headers: {
-                  'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 },
-                redirect: 'follow', 
+                redirect: 'follow',
                 referrerPolicy: 'no-referrer',
-                body: JSON.stringify(deleteData)
-              });
+                body: JSON.stringify(deleteServerData)
+            });
             const newData = await response.json();
             console.log(newData);
         }
@@ -69,21 +129,21 @@ const initData = async () => {
         document.getElementById('info-prompt').classList.remove("hide");
         document.getElementById('name-prompt').classList.add("hide");
         let sum = MyCommunity.getPopulation();
-        document.getElementById('info-panel').textContent = `Total balance of all your accounts are $ ${sum}`;
+        document.getElementById('info-panel').textContent = `Total population of all cities: ${sum}`;
     })
 
     document.getElementById('getN').addEventListener('click', () => {
         document.getElementById('info-prompt').classList.remove("hide");
         document.getElementById('name-prompt').classList.add("hide");
         let max = MyCommunity.getMostNorthern();
-        document.getElementById('info-panel').textContent = `Account with Highest balance is ${max}`;
+        document.getElementById('info-panel').textContent = `The Most Northern City is ${max}`;
     })
 
     document.getElementById('getS').addEventListener('click', () => {
         document.getElementById('info-prompt').classList.remove("hide");
         document.getElementById('name-prompt').classList.add("hide");
         let min = MyCommunity.getMostSouthern();
-        document.getElementById('info-panel').textContent = `Account with Lowest balance is ${min}`;
+        document.getElementById('info-panel').textContent = `The Most Southern City is ${min}`;
     })
 
 
@@ -96,22 +156,24 @@ const initData = async () => {
         createCityBox(cardbox, city);
         //post city obj;
         let key = 0;
-        data.forEach((obj) => {
-            (obj.key === key) ? key++: key;
+        const nData = await getData();
+        console.log(nData);
+        nData.forEach((obj) => {
+            (obj.key === key) ? key++ : key;
         })
-        let cityData = {"key":key, ...city};
+        let cityData = { "key": key, ...city };
         const response = await fetch(url + "add", {
-            method: 'POST', 
+            method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
-            credentials: 'same-origin', 
+            credentials: 'same-origin',
             headers: {
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
-            redirect: 'follow', 
+            redirect: 'follow',
             referrerPolicy: 'no-referrer',
             body: JSON.stringify(cityData)
-          });
+        });
         const newData = await response.json();
         console.log(newData);
         document.getElementById('root').appendChild(cardbox);
@@ -126,7 +188,6 @@ const initData = async () => {
             document.getElementById('info-prompt').classList.add("hide");
         }
     })
-
 }
 
 initData();

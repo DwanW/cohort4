@@ -47,8 +47,8 @@ class Community  {
         let mostN = 0;
         let cityName = '';
         this.cityArr.forEach((city)=> {
-            if (city.latitude.includes('° N')){
-                let latitudeNum = Number(city.latitude.replace('° N', ''));
+            if (city.latitude.includes(' N')){
+                let latitudeNum = Number(city.latitude.replace(' N', ''));
                 (latitudeNum > mostN) ? (mostN = latitudeNum, cityName = city.name) :mostN;
             }
         })
@@ -59,8 +59,8 @@ class Community  {
         let mostS = 0;
         let cityName = '';
         this.cityArr.forEach((city)=> {
-            if (city.latitude.includes('° S')){
-                let latitudeNum = Number(city.latitude.replace('° S', ''));
+            if (city.latitude.includes(' S')){
+                let latitudeNum = Number(city.latitude.replace(' S', ''));
                 (latitudeNum > mostS) ? (mostS = latitudeNum, cityName = city.name) :mostS;
             }
         })
@@ -84,7 +84,7 @@ class Community  {
     deleteCity(cityName){
         let deleteCity;
         this.cityArr.forEach((city, idx)=> 
-            (city.name === cityName) ? (deleteCity = {"key":idx, ...city}, this.cityArr.splice(idx,1)) : this.accArr);
+            (city.name === cityName) ? (deleteCity = city, this.cityArr.splice(idx,1)) : this.accArr);
         return deleteCity;
     }
 };
