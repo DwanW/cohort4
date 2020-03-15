@@ -63,6 +63,7 @@ const initData = async () => {
             });
             const newData = await response.json();
             console.log(newData);
+            e.target.parentNode.children[5].classList.remove("fadeIn");
             // console.log(MyCommunity.cityArr);
         } else if (e.target && e.target.className === 'moveout') {
             // console.log(e.target.parentNode.children[1].value)
@@ -90,10 +91,12 @@ const initData = async () => {
             });
             const newData = await response.json();
             console.log(newData);
+            e.target.parentNode.children[5].classList.remove("fadeIn");
         } else if (e.target && e.target.className === 'show') {
             MyCommunity.cityArr.forEach((cityObj) => {
-                (cityObj.name === searchName) ? cityObj = e.target.parentNode.children[6].textContent = cityObj.show()+" population, with a size of " + cityObj.howBig() + " located " + MyCommunity.whichSphere(cityObj) : cityObj
+                (cityObj.name === searchName) ? cityObj = e.target.parentNode.children[5].textContent = cityObj.show()+"It is " + cityObj.howBig() + " sized and is located at " + MyCommunity.whichSphere(cityObj) + ".": cityObj
             })
+            e.target.parentNode.children[5].classList.add("fadeIn");
         } else if (e.target && e.target.className === 'delete') {
             e.target.parentNode.parentNode.removeChild(e.target.parentNode);
             //post remove data

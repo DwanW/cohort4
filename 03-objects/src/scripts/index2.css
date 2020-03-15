@@ -5,7 +5,7 @@
     font-family: roboto;
 }
 body {
-    background: radial-gradient(ellipse at bottom, #c5e4fd 0%, transparent);
+    background: radial-gradient(ellipse at top, #31b7c9 0%,#0c626d 50%,  #000000 100%);
     min-height: 100vh;
 }
 #root {
@@ -20,9 +20,9 @@ body {
 .cityCard {
     margin: 20px;
     height: 350px;
-    background: linear-gradient(to bottom, rgb(0, 45, 243) 60%, rgb(240, 240, 211) 30%);
+    background: linear-gradient(to bottom, rgb(0, 174, 243) 37%, rgb(240, 240, 211) 60%);
     border-radius: 5px;
-    box-shadow: 1px 5px 10px 1px rgba(128, 128, 128, 0.432);
+    box-shadow: 1px 5px 10px 1px rgba(0, 91, 133, 0.432);
     flex-wrap:wrap; 
     text-align: center;
     position: relative;
@@ -61,7 +61,7 @@ input[type=number]::-webkit-outer-spin-button {
     border:none;
     transition: 0.4s;
     border-bottom: 1px solid white;
-    background-color: rgb(0, 45, 243);
+    background-color: rgb(0, 174, 243);
     color: white;
     font-size: 18px;
     display: block;
@@ -72,52 +72,60 @@ button {
     display:inline-block;
     height: 50px;
     min-width: 50px;
-    padding: 0px 10px;
+    padding: 0px 8px;
     width: fit-content;
-    border-radius: 50px;
+    height: 30px;
+    border-radius: 7px;
     margin: 0px 10px;
     transition: 0.3s;
 }
 button:hover {
-  transform:scale(1.05); 
+  transform:scale(1.02); 
   font-size: 1.02rem;
-  box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, 0.199); 
 }
 button:active {
-    transform:scale(0.95); 
+    transform:scale(0.98); 
     font-size: 0.98rem;
+    box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, 0.199); 
 }
 button:focus {
     outline:none;
-    box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, 0.247);
 }
 .movein { 
-    background-color: #52b202; 
+    background-color: #02b27d; 
     color: white;
-    border: 2px solid #387c018e;
+    box-shadow: 1px 1px 5px 1px rgb(83, 83, 83);
 }
 .moveout    { 
-    background-color: #52b202; 
+    background-color: #02b27d; 
     color: white;
-    border: 2px solid #387c01a6;
+    box-shadow: 1px 1px 5px 1px rgb(83, 83, 83);
 }
 .show {
-    border: 2px solid rgba(128, 128, 128, 0.37);  
+    box-shadow: 1px 1px 5px 1px rgb(83, 83, 83); 
 }
 
 .result {
     position:absolute;  
-    top: 70%;
-    left: 0;
-    right: 0;
+    top: 60%;
+    left: 6%;
+    right: 6%;
+    min-height: 100px;
     font-family: "roboto";
+    color: rgb(56, 56, 56);
     font-size: 20px;
+    transition: 0.4s;
+    opacity: 0;
+}
+
+.fadeIn {
+    opacity: 1;
 }
 
 /* Controller CSS */
 #control-container {
     position: fixed;
-    bottom: 8%;
+    bottom: 5%;
     border : 1px solid skyblue;
     width: calc(60vw - 50px);
     padding: 5px 20px;
@@ -191,10 +199,20 @@ button:focus {
 }
 
 .delete {
-    font-size: 18px;
-    color: white;
-    background-color: red;
+    font-size: 28px;
+    color: gray;
+    background-color: transparent;
     position: absolute;
-    bottom: 2px;
+    top: 2px;
     right: 0;
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+}
+.delete:hover {
+    font-size: 28px;
+    color: white;
+}
+#create-city{
+    box-shadow: 1px 1px 5px 1px rgb(83, 83, 83); 
 }

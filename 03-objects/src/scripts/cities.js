@@ -1,5 +1,3 @@
-// const fetch = require("node-fetch");
-
 class City {
     constructor(name, latitude, longitude, population) {
         this.name = name;
@@ -9,7 +7,7 @@ class City {
     }
 
     show() {
-        return `${this.name} ${this.latitude} ${this.longitude} ${this.population}`;
+        return `Latitude: ${this.latitude}, Longitude: ${this.longitude}, Population: ${this.population} People.`;
     }
 
     movedIn(num) {
@@ -34,9 +32,9 @@ class Community  {
     }
 
     whichSphere(cityObj){
-        if (cityObj.latitude.match("N")){
+        if (Number(cityObj.latitude) > 0){
             return "North Hemisphere";
-        } else if(cityObj.latitude.match("S")){
+        } else if(Number(cityObj.latitude) < 0 ){
             return "South Hemisphere";
         } else {
             return "Equator";
@@ -47,10 +45,7 @@ class Community  {
         let mostN = 0;
         let cityName = '';
         this.cityArr.forEach((city)=> {
-            if (city.latitude.includes(' N')){
-                let latitudeNum = Number(city.latitude.replace(' N', ''));
-                (latitudeNum > mostN) ? (mostN = latitudeNum, cityName = city.name) :mostN;
-            }
+                (Number(city.latitude) > mostN) ? (mostN = Number(city.latitude), cityName = city.name) :mostN;
         })
         return cityName;
     }
@@ -59,10 +54,8 @@ class Community  {
         let mostS = 0;
         let cityName = '';
         this.cityArr.forEach((city)=> {
-            if (city.latitude.includes(' S')){
-                let latitudeNum = Number(city.latitude.replace(' S', ''));
-                (latitudeNum > mostS) ? (mostS = latitudeNum, cityName = city.name) :mostS;
-            }
+                (Number(city.latitude) < mostS) ? (mostS = Number(city.latitude), cityName = city.name) :mostS;
+
         })
         return cityName;
     }

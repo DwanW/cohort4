@@ -13,7 +13,7 @@ const createCityBox = (cardbox, cityObj) => {
     //create input field
     let input1 = document.createElement('input');
     input1.setAttribute("type", "number");
-    input1.setAttribute("placeholder", "Enter population here");
+    input1.setAttribute("placeholder", "Enter population");
     input1.classList.add("inputbox");
     cardbox.appendChild(input1);
 
@@ -43,7 +43,7 @@ const createCityBox = (cardbox, cityObj) => {
     cardbox.appendChild(cardValue);
 
     let button4 = document.createElement("button");
-    button4.innerHTML = '<i class="fa fa-user-times"></i>';
+    button4.innerHTML = '<i class="fa fa-trash"></i>';
     button4.classList.add('delete');
     cardbox.appendChild(button4);
     return cardbox;
