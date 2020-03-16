@@ -17,6 +17,7 @@
     "node-fetch": "^2.6.0"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.8.7"
+    "@babel/polyfill": "^7.8.7",
+    "minimist": "^1.2.5"
   }
 }
