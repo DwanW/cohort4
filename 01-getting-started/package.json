@@ -20,5 +20,7 @@
         "node-fetch": "^2.6.0",
         "whatwg-fetch": "^3.0.0"
     },
-    "dependencies": {}
+    "dependencies": {
+        "acorn": "^5.7.4"
+    }
 }
