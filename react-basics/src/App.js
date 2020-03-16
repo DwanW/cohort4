@@ -4,6 +4,7 @@ import './App.css';
 import POJO from './components/POJO';
 import FuncComp from './components/FuncComp';
 import ClassComp from './components/ClassComp';
+import MyComp from './components/myComponent';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
     console.log("onConditional", newStuff);
     
   }
+  
 
   return (
     <div className="App">
@@ -59,6 +61,7 @@ function App() {
       {result} <p/>
       {newStuff} <p/>
       <button onClick={onConditional}>Conditional</button>
+      <MyComp whatToSay ="What Ever"/>
     </div>
       );
 }
