@@ -14,7 +14,7 @@
 }
 .drawing:hover {
   transform: scale(1.5);
-  height: 400px;
+  height: 250px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
