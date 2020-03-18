@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { useState } from 'react';
 import './index.css';
 
 function Square(props) {
@@ -62,7 +63,7 @@ class Game extends React.Component {
             return;
         }
         squares[i] = 'X';
-        // console.log(calculateWinner(squares));
+        console.log(calculateWinner(squares));
         this.setState({
             history: history.concat([{
                 squares: squares,
@@ -70,16 +71,19 @@ class Game extends React.Component {
             stepNumber: history.length,
             xIsNext: !this.state.xIsNext,
         });
-        //ai move after
+        if (calculateWinner(squares)) {
+            return;
+        }
+        // ai move after
         let bestMove = aiMove(squares);
         squares[bestMove] = 'O';
-        this.setState({
-            history: history.concat([{
-                squares: squares,
-            }]),
-            stepNumber: history.length,
-            xIsNext: !this.state.xIsNext,
-        });
+        // this.setState({
+        //     history: history.concat([{
+        //         squares: squares,
+        //     }]),
+        //     stepNumber: history.length,
+        //     xIsNext: !this.state.xIsNext,
+        // });
     }
 
     jumpTo(step) {
@@ -104,6 +108,21 @@ class Game extends React.Component {
                 </li>
             );
         });
+
+        if (!this.props.isFirst) {
+            const history = this.state.history.slice(0, this.state.stepNumber + 1);
+            const current = history[history.length - 1];
+            const squares = current.squares.slice();
+            squares[0] = 'O';
+            this.setState({
+                history: history.concat([{
+                    squares: squares,
+                }]),
+                stepNumber: history.length,
+                xIsNext: !this.state.xIsNext,
+            });
+            this.props.noLoop();
+        }
 
         let status;
         if (winner === 'draw') {
@@ -164,8 +183,9 @@ const aiMove = (boardState) => {
             console.log(boardState);
             let score = minimax(boardState, false);
             boardState[idx] = null;
-            if (score > bestScore) {
+            if (score > bestScore && Math.random() > 0.2) {
                 bestScore = score;
+                console.log(bestScore)
                 move = idx;
             }
         }
@@ -187,7 +207,7 @@ function minimax(boardState, isMaximizing) {
 
     if (isMaximizing) {
         let bestScore = -Infinity;
-        boardState.forEach((box,idx) => {
+        boardState.forEach((box, idx) => {
             if (box === null) {
                 boardState[idx] = "O"
                 let score = minimax(boardState, false);
@@ -198,7 +218,7 @@ function minimax(boardState, isMaximizing) {
         return bestScore;
     } else {
         let bestScore = Infinity;
-        boardState.forEach((box,idx) => {
+        boardState.forEach((box, idx) => {
             if (box === null) {
                 boardState[idx] = "X"
                 let score = minimax(boardState, true);
@@ -210,9 +230,35 @@ function minimax(boardState, isMaximizing) {
     }
 }
 
+function App() {
+    const [gameStart, setGameStart] = useState(false);
+    const [isFirst, setIsFirst] = useState(true);
+
+    const handleFirstTurn = (isFirst) => {
+        setIsFirst(isFirst);
+        console.log(isFirst);
+    }
+    const handleGameStart = () => {
+        setGameStart(true);
+    }
+
+    return (
+        <React.Fragment>
+            {
+                (gameStart) ?
+                    <Game isFirst={isFirst} noLoop={()=>setIsFirst(true)}/> : (
+                        <div>
+                            <button onClick={() => {handleFirstTurn(true)}}>go first</button>
+                            <button onClick={() => {handleFirstTurn(false)}}>go second</button>
+                            <button onClick={handleGameStart}>start game</button>
+                        </div>)
+            }
+        </React.Fragment>
+    )
+}
 // ========================================
 
 ReactDOM.render(
-    <Game />,
+    <App />,
     document.getElementById('root')
 );
