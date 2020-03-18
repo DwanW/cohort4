@@ -61,22 +61,33 @@ class Game extends React.Component {
         if (calculateWinner(squares) || squares[i]) {
             return;
         }
-        squares[i] = this.state.xIsNext ? 'X' : 'O';
+        squares[i] = 'X';
+        // console.log(calculateWinner(squares));
         this.setState({
             history: history.concat([{
                 squares: squares,
-              }]),
-              stepNumber: history.length,
-              xIsNext: !this.state.xIsNext,
-            });
+            }]),
+            stepNumber: history.length,
+            xIsNext: !this.state.xIsNext,
+        });
+        //ai move after
+        let bestMove = aiMove(squares);
+        squares[bestMove] = 'O';
+        this.setState({
+            history: history.concat([{
+                squares: squares,
+            }]),
+            stepNumber: history.length,
+            xIsNext: !this.state.xIsNext,
+        });
     }
 
     jumpTo(step) {
         this.setState({
-          stepNumber: step,
-          xIsNext: (step % 2) === 0,
+            stepNumber: step,
+            xIsNext: (step % 2) === 0,
         });
-      }
+    }
 
     render() {
         const history = this.state.history;
@@ -84,18 +95,20 @@ class Game extends React.Component {
         const winner = calculateWinner(current.squares);
 
         const moves = history.map((step, move) => {
-            const desc = move ?
-              'Go to move #' + move :
-              'Go to game start';
+            const description = move ?
+                'Go to move #' + move :
+                'Go to game start';
             return (
-              <li key={move}>
-                <button onClick={() => this.jumpTo(move)}>{desc}</button>
-              </li>
+                <li key={move}>
+                    <button onClick={() => this.jumpTo(move)}>{description}</button>
+                </li>
             );
-          });
+        });
 
         let status;
-        if (winner) {
+        if (winner === 'draw') {
+            status = winner;
+        } else if (winner) {
             status = 'Winner: ' + winner;
         } else {
             status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
@@ -134,7 +147,67 @@ function calculateWinner(squares) {
             return squares[a];
         }
     }
-    return null;
+    if (!squares.includes(null)) {
+        return 'draw';
+    } else {
+        return null;
+    }
+}
+
+const aiMove = (boardState) => {
+    //AI's turn
+    let bestScore = -Infinity;
+    let move;
+    boardState.forEach((box, idx) => {
+        if (box === null) {
+            boardState[idx] = "O";
+            console.log(boardState);
+            let score = minimax(boardState, false);
+            boardState[idx] = null;
+            if (score > bestScore) {
+                bestScore = score;
+                move = idx;
+            }
+        }
+    })
+    return move;
+}
+
+let scores = {
+    X: -1,
+    O: +1,
+    draw: 0
+};
+
+function minimax(boardState, isMaximizing) {
+    let result = calculateWinner(boardState);
+    if (result !== null) {
+        return scores[result];
+    }
+
+    if (isMaximizing) {
+        let bestScore = -Infinity;
+        boardState.forEach((box,idx) => {
+            if (box === null) {
+                boardState[idx] = "O"
+                let score = minimax(boardState, false);
+                boardState[idx] = null;
+                bestScore = Math.max(score, bestScore);
+            }
+        })
+        return bestScore;
+    } else {
+        let bestScore = Infinity;
+        boardState.forEach((box,idx) => {
+            if (box === null) {
+                boardState[idx] = "X"
+                let score = minimax(boardState, true);
+                boardState[idx] = null;
+                bestScore = Math.min(score, bestScore);
+            }
+        })
+        return bestScore;
+    }
 }
 
 // ========================================
