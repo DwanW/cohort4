@@ -72,7 +72,6 @@ class AccountController extends React.Component {
     onDelete(idx) {
         let tempArr = [...this.state.accArr];
         tempArr.splice(idx, 1);
-        console.log(tempArr);
         this.setState({ accArr: tempArr });
     }
 
