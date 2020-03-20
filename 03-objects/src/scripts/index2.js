@@ -17,17 +17,16 @@ const getData = async () => {
 
 const initData = async () => {
     const data = await getData();
-    console.log(data);
     let cData = [];
     data.forEach((obj) => {
         let cities = new City(obj.name, obj.latitude, obj.longitude, Number(obj.population));
         cData = [...cData,cities];
     });
     let MyCommunity = new Community(cData);
-    console.log(cData);
+    // console.log(cData);
 
     //event listeners
-    console.log(MyCommunity.cityArr)
+    // console.log(MyCommunity.cityArr)
 
     MyCommunity.cityArr.forEach((obj) => {
         let cardbox = document.createElement("div");
@@ -37,6 +36,7 @@ const initData = async () => {
 
     document.getElementById("root").addEventListener('click', async (e) => {
         let searchName = e.target.parentNode.children[0].textContent;
+        console.log(e.target.parentNode.parentNode.children[0]);
         if (e.target && e.target.className === 'movein') {
             // console.log(e.target.parentNode.children[1].value)
             let updatedObj;
@@ -98,6 +98,7 @@ const initData = async () => {
             })
             e.target.parentNode.children[5].classList.add("fadeIn");
         } else if (e.target && e.target.className === 'delete') {
+            console.log(e.target);
             e.target.parentNode.parentNode.removeChild(e.target.parentNode);
             //post remove data
             let deleteData = MyCommunity.deleteCity(searchName);
@@ -120,6 +121,8 @@ const initData = async () => {
             });
             const newData = await response.json();
             console.log(newData);
+        } else{
+            console.log('clicked on an element with no event listner');
         }
     })
 
@@ -160,7 +163,6 @@ const initData = async () => {
         //post city obj;
         let key = 0;
         const nData = await getData();
-        console.log(nData);
         nData.forEach((obj) => {
             (obj.key === key) ? key++ : key;
         })

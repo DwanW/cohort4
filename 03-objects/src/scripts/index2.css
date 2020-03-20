@@ -213,6 +213,9 @@ button:focus {
     font-size: 28px;
     color: white;
 }
+i {
+    pointer-events: none;
+}
 #create-city{
     box-shadow: 1px 1px 5px 1px rgb(83, 83, 83); 
 }

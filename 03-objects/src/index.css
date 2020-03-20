@@ -189,7 +189,9 @@ button:focus {
     font-size: 1.4rem;
     color: Blue
 }
-
+i {
+    pointer-events: none;
+}
 .delete {
     font-size: 18px;
     color: white;
