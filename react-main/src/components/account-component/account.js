@@ -31,10 +31,10 @@ class Account extends React.Component {
             <div className="accCard">
                 <div className="accHeader">{this.props.name}</div>
                 <input className="inputbox" onChange={this.handleChange} placeholder="Enter Fund" type="number" />
-                <button className="deposit" onClick={this.deposit}>Deposit</button>
-                <button className="withdraw" onClick={this.withdraw}>Withdraw</button>
+                <button className="deposit accbutton" onClick={this.deposit}>Deposit</button>
+                <button className="withdraw accbutton" onClick={this.withdraw}>Withdraw</button>
                 <div className="result">{`Account ${this.props.name} total balance: $${this.props.balance}`}</div>
-                <button className="delete" onClick={this.props.onDelete}><i className="fa fa-user-times"></i></button>
+                <button className="delete accbutton" onClick={this.props.onDelete}><i className="fa fa-user-times"></i></button>
             </div>
         )
     }

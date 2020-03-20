@@ -129,17 +129,17 @@ class AccountController extends React.Component {
                     ))
                 }
                 <div id="control-container" ref={this.setWrapperRef}>
-                    <button id="addAcc" onClick={this.openAccPrompt}>Add Acc</button>
-                    <button id="getTotal" onClick={this.getTotal}>Total</button>
-                    <button id="getMax" onClick={this.getMax}>Max</button>
-                    <button id="getMin" onClick={this.getMin}>Min</button>
+                    <button className="accbutton" id="addAcc" onClick={this.openAccPrompt}>Add Acc</button>
+                    <button className="accbutton" id="getTotal" onClick={this.getTotal}>Total</button>
+                    <button className="accbutton" id="getMax" onClick={this.getMax}>Max</button>
+                    <button className="accbutton" id="getMin" onClick={this.getMin}>Min</button>
                 </div>
                 <div className={`name-prompt ${this.state.hideAccPrompt ? 'hide' : ''}`} ref={this.setWrapperRef} id="name-prompt">
                     <div className="prompt-header">Creating New Account</div>
                     <div id="name-prompt-action">
                         <input className="promptinput" type="text" id="accName" onChange={this.handleNameChange} placeholder="Enter Account Name" />
                         <input className="promptinput" type="number" id="accBalance" onChange={this.handleBalanceChange} placeholder="Enter Balance" />
-                        <button id="create-acc" onClick={this.addAcc}>Create this Accout</button>
+                        <button className="accbutton" id="create-acc" onClick={this.addAcc}>Create this Accout</button>
                     </div>
                 </div>
                 <div className={`name-prompt ${this.state.hideInfoPrompt ? 'hide' : ''}`} ref={this.setWrapperRef} id="info-prompt">

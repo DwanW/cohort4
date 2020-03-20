@@ -67,7 +67,7 @@ input[type=number]::-webkit-outer-spin-button {
     display: block;
     text-align: center;
 }
-button {
+.accbutton {
     border: none;
     display:inline-block;
     height: 50px;
@@ -78,16 +78,16 @@ button {
     margin: 0px 10px;
     transition: 0.3s;
 }
-button:hover {
+.accbutton:hover {
   transform:scale(1.05); 
   font-size: 1.02rem;
   box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, 0.199); 
 }
-button:active {
+.accbutton:active {
     transform:scale(0.95); 
     font-size: 0.98rem;
 }
-button:focus {
+.accbutton:focus {
     outline:none;
     box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, 0.247);
 }
