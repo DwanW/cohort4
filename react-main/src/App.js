@@ -18,16 +18,12 @@ const Header = () => (
 function App() {
   const [displayElement, setDisplayElement] = useState(0);
 
-  const show = () => (
-    (displayElement === 0) ? <Header /> :
-      (displayElement === 1) ? <Ttt /> :
-        (displayElement === 2) ? <Accounts /> :
-          (displayElement === 3) ? <Community /> : ''
-  )
-
   return (
     <div className="App">
-      {show()}
+      {(displayElement === 0) ? <Header /> :
+        (displayElement === 1) ? <Ttt /> :
+          (displayElement === 2) ? <Accounts /> :
+            (displayElement === 3) ? <Community /> : ''}
       <div className="bottom-nav">
         <img src={home} onClick={() => setDisplayElement(0)} className={`nav-logo ${displayElement === 0 ? 'active' : ''}`} alt="logo" />
         <img src={tttSvg} onClick={() => setDisplayElement(1)} className={`nav-logo ${displayElement === 1 ? 'active' : ''}`} alt="logo" />

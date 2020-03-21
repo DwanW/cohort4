@@ -65,8 +65,7 @@ class Game extends React.Component {
                 history: history.concat([{
                     squares: squares,
                 }]),
-                stepNumber: history.length,
-                xIsNext: !this.state.xIsNext,
+                stepNumber: history.length
             });
             this.props.noLoop();
         }
@@ -86,7 +85,7 @@ class Game extends React.Component {
                 squares: squares,
             }]),
             stepNumber: history.length,
-            xIsNext: !this.state.xIsNext,
+            // xIsNext: !this.state.xIsNext,
         });
         if (calculateWinner(squares)) {
             return;
@@ -111,16 +110,16 @@ class Game extends React.Component {
         const moves = history.map((step, move) => {
             const description = move ?
                 'Go to move #' + move :
-                'Go to game start';
+                'Clear Board';
             return (
                 <li key={move}>
-                    <button onClick={() => this.jumpTo(move)}>{description}</button>
+                    <button className="moves-button" onClick={() => this.jumpTo(move)}>{description}</button>
                 </li>
             );
         });
 
         let status;
-        if (winner === 'draw') {
+        if (winner === 'Draw') {
             status = winner;
         } else if (winner) {
             status = 'Winner: ' + winner;
@@ -162,7 +161,7 @@ function calculateWinner(squares) {
         }
     }
     if (!squares.includes(null)) {
-        return 'draw';
+        return 'Draw';
     } else {
         return null;
     }
@@ -192,7 +191,7 @@ const aiMove = (boardState) => {
 let scores = {
     X: -1,
     O: +1,
-    draw: 0
+    Draw: 0
 };
 
 function minimax(boardState, isMaximizing) {
