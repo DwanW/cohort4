@@ -10,12 +10,12 @@ const whichSphere = (latitude) => {
     }
 }
 
-const howBig = (population) =>{
-        return (population > 100000) ? "City":
+const howBig = (population) => {
+    return (population > 100000) ? "City" :
         (population > 20000) ? "Large Town" :
-        (population > 1000) ? "Town" :
-        (population > 100) ? "Village" : "Hamlet";
-    }
+            (population > 1000) ? "Town" :
+                (population > 100) ? "Village" : "Hamlet";
+}
 
 class City extends React.Component {
     constructor(props) {
@@ -25,11 +25,11 @@ class City extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.movedIn = this.movedIn.bind(this);
-        this.movedOut =this.movedOut.bind(this);
+        this.movedOut = this.movedOut.bind(this);
     }
 
-    handleChange(e){
-        this.setState({relocate: e.target.value});
+    handleChange(e) {
+        this.setState({ relocate: e.target.value });
     }
     movedIn() {
         let afterPopulation = Number(this.props.population) + Number(this.state.relocate);

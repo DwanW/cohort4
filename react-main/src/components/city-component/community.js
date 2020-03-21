@@ -35,7 +35,7 @@ class Community extends React.Component {
             MostN: '',
             MostS: '',
             info: 'City Not Found',
-            apiData:[],
+            apiData: [],
         }
         this.wrapperRef = [];
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -52,14 +52,14 @@ class Community extends React.Component {
         this.getPopulation = this.getPopulation.bind(this);
         this.onDelete = this.onDelete.bind(this);
         this.onValueChange = this.onValueChange.bind(this);
-        this.getRandom =this.getRandom.bind(this);
+        this.getRandom = this.getRandom.bind(this);
     }
 
     async componentDidMount() {
         try {
             const response = await fetch('http://localhost:5000/all');
             const data = await response.json();
-            this.setState({cityArr: data});
+            this.setState({ cityArr: data });
         } catch (error) {
             console.error('Error:', error);
             throw (error);
@@ -69,17 +69,13 @@ class Community extends React.Component {
             const response = await fetch('https://restcountries.eu/rest/v2/all');
             const data = await response.json();
             console.log(data);
-            this.setState({apiData: data});
+            this.setState({ apiData: data });
         } catch (error) {
             console.error('Error:', error);
             throw (error);
         }
         document.addEventListener('click', this.clickAway);
     }
-    componentDidUpdate() {
-
-    }
-
     componentWillUnmount() {
         document.removeEventListener('click', this.clickAway);
     }
@@ -118,7 +114,7 @@ class Community extends React.Component {
         let tempArr = [...this.state.cityArr];
         tempArr.splice(idx, 1);
         this.setState({ cityArr: tempArr });
-        postData('http://localhost:5000/delete', {"key":key});
+        postData('http://localhost:5000/delete', { "key": key });
     }
 
     onValueChange(value, idx) {
@@ -129,7 +125,7 @@ class Community extends React.Component {
     }
 
     createCity() {
-        let newCity = { key: Math.floor(Math.random()*100 + Date.now()), name: this.state.newCityName, latitude: this.state.newCityLat, longitude: this.state.newCityLong, population: this.state.newPop };
+        let newCity = { key: Math.floor(Math.random() * 100 + Date.now()), name: this.state.newCityName, latitude: this.state.newCityLat, longitude: this.state.newCityLong, population: this.state.newPop };
         let tempArr = [...this.state.cityArr, newCity];
         this.setState({ cityArr: tempArr, hideCityPrompt: true });
         postData('http://localhost:5000/add', newCity);
@@ -167,13 +163,14 @@ class Community extends React.Component {
         this.openInfoPrompt();
     }
 
-    getRandom(){
-        let randomIdx = Math.round(Math.random()*250);
+    getRandom() {
+        let randomIdx = Math.round(Math.random() * 250);
         console.log(this.state.apiData[randomIdx]);
-        this.setState({newCityName:this.state.apiData[randomIdx].capital,
-            newCityLat:this.state.apiData[randomIdx].latlng[0],
-            newCityLong:this.state.apiData[randomIdx].latlng[1],
-            newPop:this.state.apiData[randomIdx].population
+        this.setState({
+            newCityName: this.state.apiData[randomIdx].capital,
+            newCityLat: this.state.apiData[randomIdx].latlng[0],
+            newCityLong: this.state.apiData[randomIdx].latlng[1],
+            newPop: this.state.apiData[randomIdx].population
         })
     }
 
@@ -206,8 +203,8 @@ class Community extends React.Component {
                         <button className='city-button' id='random' onClick={this.getRandom}><i className="fa fa-smile-o" /></button>
                         <input className="promptinput" type="text" id="cityName" placeholder="City Name" value={this.state.newCityName} onChange={this.handleNameChange} />
                         <input className="promptinput" type="text" id="cityLat" placeholder="Latitude" value={this.state.newCityLat} onChange={this.handleLatChange} />
-                        <input className="promptinput" type="text" id="cityLong" placeholder="Longitude" value={this.state.newCityLong}onChange={this.handleLongChange} />
-                        <input className="promptinput" type="number" id="cityPop" placeholder="Population" value={this.state.newPop}onChange={this.handlePopChange} />
+                        <input className="promptinput" type="text" id="cityLong" placeholder="Longitude" value={this.state.newCityLong} onChange={this.handleLongChange} />
+                        <input className="promptinput" type="number" id="cityPop" placeholder="Population" value={this.state.newPop} onChange={this.handlePopChange} />
                         <button className='city-button' id="create-city" onClick={this.createCity}>Create this City</button>
                     </div>
                 </div>

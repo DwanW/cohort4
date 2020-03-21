@@ -18,7 +18,8 @@ body {
 /* Card Css */
 .cityCard {
     margin: 20px;
-    height: 350px;
+    min-height: 350px;
+    height: fit-content;
     background: linear-gradient(to bottom, rgb(0, 174, 243) 37%, rgb(240, 240, 211) 60%);
     border-radius: 5px;
     box-shadow: 1px 5px 10px 1px rgba(0, 91, 133, 0.432);
@@ -123,8 +124,11 @@ input[type=number]::-webkit-outer-spin-button {
     position: fixed;
     top: 3%;
     border : 1px solid skyblue;
-    width: calc(60vw - 50px);
+    width: calc(65vw - 50px);
     padding: 5px 20px;
+    left: 0;
+    right: 0;
+    margin: auto;
     display: flex;
     justify-content: flex-start;
     background-color: rgba(192, 192, 192, 0.301);
@@ -132,6 +136,9 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 3;
 }
 @media screen and (max-width: 600px) {
+    .result {
+        font-size: 16px;
+    }
     #control-container {
       width: calc(100vw - 50px);
     }
