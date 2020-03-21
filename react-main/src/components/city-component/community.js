@@ -57,6 +57,16 @@ class Community extends React.Component {
 
     async componentDidMount() {
         try {
+            const response = await fetch('https://restcountries.eu/rest/v2/all');
+            const data = await response.json();
+            this.setState({ apiData: data });
+        } catch (error) {
+            console.error('Error:', error);
+            throw (error);
+        }
+        document.addEventListener('click', this.clickAway);
+
+        try {
             const response = await fetch('http://localhost:5000/all');
             const data = await response.json();
             this.setState({ cityArr: data });
@@ -64,17 +74,6 @@ class Community extends React.Component {
             console.error('Error:', error);
             throw (error);
         }
-
-        try {
-            const response = await fetch('https://restcountries.eu/rest/v2/all');
-            const data = await response.json();
-            console.log(data);
-            this.setState({ apiData: data });
-        } catch (error) {
-            console.error('Error:', error);
-            throw (error);
-        }
-        document.addEventListener('click', this.clickAway);
     }
     componentWillUnmount() {
         document.removeEventListener('click', this.clickAway);
@@ -165,7 +164,6 @@ class Community extends React.Component {
 
     getRandom() {
         let randomIdx = Math.round(Math.random() * 250);
-        console.log(this.state.apiData[randomIdx]);
         this.setState({
             newCityName: this.state.apiData[randomIdx].capital,
             newCityLat: this.state.apiData[randomIdx].latlng[0],

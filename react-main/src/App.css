@@ -4,6 +4,10 @@ body {
   box-sizing: border-box;
   border: none;
 }
+
+button:focus  {
+  outline:none;
+}
 #root {
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
@@ -21,13 +25,20 @@ body {
   color: white; 
 }
 
+.App-header{
+  margin-bottom: 15vmin;
+}
+
 .App-logo {
-  height: 40vmin;
+  height: 50vmin;
   pointer-events: none;
 }
 .nav-logo {
-  height: 100px;
+  height: 14vmin;
   display:inline-block;
+  margin: 0 1vmin;
+  border-radius: 7px;
+  transition: 0.4s;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -59,5 +70,6 @@ body {
 }
 
 .active {
-  border: 1px solid white;
+  background-color:#a7ffeb;
+  box-shadow: 1px 1px 5px 1px #64ffda;
 }

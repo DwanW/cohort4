@@ -1,9 +1,4 @@
-body {
-    font: 14px "Century Gothic", Futura, sans-serif;
-    margin: 20px;
-  }
-  
-  ol, ul {
+    ol, ul {
     padding-left: 30px;
   }
   
@@ -46,6 +41,45 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 50vh;
+  }
+
+  .game-name {
+    font-size: 32px;
+    margin-top: -25vmin;
+    transition: 0.4s;
+    color: #61dafb;
+  }
+
+  .game-menu {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid white;
+    width: 300px;
+    height: 200px;
+  }
+
+  .game-menu-button {
+    display: inline-block;
+    background: transparent;
+    width: 180px;
+    height: 35px;
+    color: white;
+    border:none;
+    text-align: left;
+    font-size: 25px;
+  }
+
+  .selected {
+    color: rgb(59, 255, 59);
+  }
+  .check {
+    position:absolute;
+    left:30px;
+    top: 50px;
+    transition: 0.4s;
   }
   
   .game-info {

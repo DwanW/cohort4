@@ -54,6 +54,24 @@ class Game extends React.Component {
             xIsNext: true,
         };
     }
+
+    componentDidMount(){
+        if (!this.props.isFirst) {
+            const history = this.state.history.slice(0, this.state.stepNumber + 1);
+            const current = history[history.length - 1];
+            const squares = current.squares.slice();
+            squares[0] = 'O';
+            this.setState({
+                history: history.concat([{
+                    squares: squares,
+                }]),
+                stepNumber: history.length,
+                xIsNext: !this.state.xIsNext,
+            });
+            this.props.noLoop();
+        }
+    }
+
     handleClick(i) {
         const history = this.state.history.slice(0, this.state.stepNumber + 1);
         const current = history[history.length - 1];
@@ -62,7 +80,7 @@ class Game extends React.Component {
             return;
         }
         squares[i] = 'X';
-        console.log(calculateWinner(squares));
+        // console.log(calculateWinner(squares));
         this.setState({
             history: history.concat([{
                 squares: squares,
@@ -76,13 +94,6 @@ class Game extends React.Component {
         // ai move after
         let bestMove = aiMove(squares);
         squares[bestMove] = 'O';
-        // this.setState({
-        //     history: history.concat([{
-        //         squares: squares,
-        //     }]),
-        //     stepNumber: history.length,
-        //     xIsNext: !this.state.xIsNext,
-        // });
     }
 
     jumpTo(step) {
@@ -107,21 +118,6 @@ class Game extends React.Component {
                 </li>
             );
         });
-
-        if (!this.props.isFirst) {
-            const history = this.state.history.slice(0, this.state.stepNumber + 1);
-            const current = history[history.length - 1];
-            const squares = current.squares.slice();
-            squares[0] = 'O';
-            this.setState({
-                history: history.concat([{
-                    squares: squares,
-                }]),
-                stepNumber: history.length,
-                xIsNext: !this.state.xIsNext,
-            });
-            this.props.noLoop();
-        }
 
         let status;
         if (winner === 'draw') {
@@ -179,12 +175,13 @@ const aiMove = (boardState) => {
     boardState.forEach((box, idx) => {
         if (box === null) {
             boardState[idx] = "O";
-            console.log(boardState);
+            // console.log(boardState);
             let score = minimax(boardState, false);
             boardState[idx] = null;
+            //giving bot 20% chance to not make the best move
             if (score > bestScore && Math.random() > 0.2) {
                 bestScore = score;
-                console.log(bestScore)
+                // console.log(bestScore)
                 move = idx;
             }
         }
@@ -235,7 +232,7 @@ function Ttt() {
 
     const handleFirstTurn = (isFirst) => {
         setIsFirst(isFirst);
-        console.log(isFirst);
+        // console.log(isFirst);
     }
     const handleGameStart = () => {
         setGameStart(true);
@@ -243,13 +240,15 @@ function Ttt() {
 
     return (
         <React.Fragment>
+            <div className='game-name'>Tic Tac Toe With AI</div>
             {
                 (gameStart) ?
                     <Game isFirst={isFirst} noLoop={()=>setIsFirst(true)}/> : (
-                        <div>
-                            <button onClick={() => {handleFirstTurn(true)}}>go first</button>
-                            <button onClick={() => {handleFirstTurn(false)}}>go second</button>
-                            <button onClick={handleGameStart}>start game</button>
+                        <div className="game-menu">
+                        <div className="check" style={{top: `${isFirst?'50px':'85px'}` }}><i className='fa fa-check selected' aria-hidden="true" /></div>
+                        <button className='game-menu-button' onClick={() => {handleFirstTurn(true)}}>Go First</button>
+                        <button className='game-menu-button' onClick={() => {handleFirstTurn(false)}}>Go Second</button>
+                            <button className="game-menu-button" onClick={handleGameStart}>Start game</button>
                         </div>)
             }
         </React.Fragment>

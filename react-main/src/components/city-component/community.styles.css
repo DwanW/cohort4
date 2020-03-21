@@ -88,9 +88,6 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 0.98rem;
     box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, 0.199); 
 }
-.city-button:focus {
-    outline:none;
-}
 .movein { 
     background-color: #02b27d; 
     color: white;
