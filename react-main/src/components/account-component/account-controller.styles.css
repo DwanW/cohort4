@@ -11,7 +11,6 @@ body {
 #acc-app {
     margin: 25px auto 25px auto;
     width: 60vw;
-    border-top: 1px solid rgba(151, 151, 151, 0.61);
     min-height: 500px;
     padding: 25px;
 } 
@@ -28,12 +27,6 @@ body {
     position: relative;
 }
 
-@media screen and (max-width: 600px) {
-    #root {
-      width: 100vw;
-    }
-  }
-
 .accHeader {
     width: 100%;
     text-align: center;
@@ -49,11 +42,11 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
-.inputbox:focus {
+.acc-inputbox:focus {
     outline: none;
     width: 180px;
 }
-.inputbox {
+.acc-inputbox {
     width: 150px;
     height: 20px;
     padding: 10px;
@@ -77,11 +70,11 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 50px;
     margin: 0px 10px;
     transition: 0.3s;
+    box-shadow: 1px 1px 5px 1px rgba(187, 187, 187, 0.5); 
 }
 .accbutton:hover {
   transform:scale(1.05); 
   font-size: 1.02rem;
-  box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, 0.199); 
 }
 .accbutton:active {
     transform:scale(0.95); 
@@ -104,7 +97,7 @@ input[type=number]::-webkit-outer-spin-button {
     border: 2px solid rgba(128, 128, 128, 0.37);  
 }
 
-.result {
+.acc-result {
     color: rgb(76, 0, 255);
     position:absolute;  
     top: 70%;
@@ -115,23 +108,31 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /* Controller CSS */
-#control-container {
+#acc-control-container {
     position: fixed;
     top: 3%;
-    border : 1px solid skyblue;
     width: calc(60vw - 50px);
+    left: 0;
+    right: 0;
+    margin: auto;
     padding: 5px 20px;
     display: flex;
     justify-content: flex-start;
-    background-color: rgba(192, 192, 192, 0.301);
-    border-radius: 7px;
     z-index: 3;
+    border-bottom: 1px solid white;
 }
 @media screen and (max-width: 600px) {
-    #control-container {
+    #root {
+        width: 100vw;
+      }
+    #acc-app {
+          width: 95vw;
+          padding: 0;
+      }
+    #acc-control-container {
       width: calc(100vw - 50px);
     }
-  }
+}
 
 #getTotal {
     margin-left: auto;
@@ -147,7 +148,7 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: white;
     position: fixed;
     z-index: 2;
-    top: 0;
+    top: 10vmin;
     left: 0;
     right: 0;
     min-height: 200px;
@@ -192,7 +193,7 @@ input[type=number]::-webkit-outer-spin-button {
     color: Blue
 }
 
-.delete {
+.acc-delete {
     font-size: 18px;
     color: white;
     background-color: red;

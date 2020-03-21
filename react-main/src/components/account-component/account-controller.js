@@ -70,22 +70,22 @@ class AccountController extends React.Component {
     }
 
     onDelete(idx) {
-        let tempArr = [...this.state.cityArr];
+        let tempArr = [...this.state.accArr];
         tempArr.splice(idx, 1);
-        this.setState({ cityArr: tempArr });
+        this.setState({ accArr: tempArr });
     }
 
     onValueChange(value, idx) {
-        let tempArr = [...this.state.cityArr];
+        let tempArr = [...this.state.accArr];
         tempArr[idx].balance = value;
-        this.setState({ cityArr: tempArr })
+        this.setState({ accArr: tempArr })
     }
 
     getTotal() {
         if (this.state.accArr.length > 0) {
             let total = 0;
             this.state.accArr.forEach((obj) => {
-                total += obj.balance;
+                total += Number(obj.balance);
             })
             this.setState({ total: total, info:`The Total Balance of All Accounts: $${total}` });
         }
@@ -96,7 +96,7 @@ class AccountController extends React.Component {
         if (this.state.accArr.length > 0) {
             let max = 0;
             let hAccName = '';
-            this.state.accArr.forEach((obj) => (obj.balance > max) ? (max = obj.balance, hAccName = obj.name) : max);
+            this.state.accArr.forEach((obj) => (Number(obj.balance) > max) ? (max = Number(obj.balance), hAccName = obj.name) : max);
             this.setState({ max: hAccName, info:`The Account with the Highest Balance: ${hAccName}` });
         }
         this.openInfoPrompt()
@@ -104,9 +104,9 @@ class AccountController extends React.Component {
 
     getMin() {
         if (this.state.accArr.length > 0) {
-            let min = this.state.accArr[0].balance;
+            let min = Number(this.state.accArr[0].balance);
             let lAccName = this.state.accArr[0].name;
-            this.state.accArr.forEach((obj) => (obj.balance < min) ? (min = obj.balance, lAccName = obj.name) : min);
+            this.state.accArr.forEach((obj) => (Number(obj.balance) < min) ? (min = Number(obj.balance), lAccName = obj.name) : min);
             this.setState({ min: lAccName, info:`The Account with the Lowest Balance: ${lAccName}` });
         }
         this.openInfoPrompt()
@@ -127,7 +127,7 @@ class AccountController extends React.Component {
                         />
                     ))
                 }
-                <div id="control-container" ref={this.setWrapperRef}>
+                <div id="acc-control-container" ref={this.setWrapperRef}>
                     <button className="accbutton" id="addAcc" onClick={this.openAccPrompt}>Add Acc</button>
                     <button className="accbutton" id="getTotal" onClick={this.getTotal}>Total</button>
                     <button className="accbutton" id="getMax" onClick={this.getMax}>Max</button>
@@ -138,7 +138,7 @@ class AccountController extends React.Component {
                     <div id="name-prompt-action">
                         <input className="promptinput" type="text" id="accName" onChange={this.handleNameChange} placeholder="Enter Account Name" />
                         <input className="promptinput" type="number" id="accBalance" onChange={this.handleBalanceChange} placeholder="Enter Balance" />
-                        <button className="accbutton" id="create-acc" onClick={this.addAcc}>Create this Accout</button>
+                        <button className="accbutton" onClick={this.addAcc}>Create this Accout</button>
                     </div>
                 </div>
                 <div className={`name-prompt ${this.state.hideInfoPrompt ? 'hide' : ''}`} ref={this.setWrapperRef} id="info-prompt">

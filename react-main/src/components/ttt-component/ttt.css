@@ -87,8 +87,12 @@
     height: 30vmin;
   }
 
+  .status {
+    border-bottom: turquoise solid 3px;
+  }
+
   .moves-button {
-    width: 17vmin;
+    width: 120px;
     background:transparent;
     border: none;
     color: white;

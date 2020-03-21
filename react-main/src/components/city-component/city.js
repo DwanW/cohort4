@@ -48,7 +48,12 @@ class City extends React.Component {
                 <input className="inputbox" placeholder="Enter population" type="number" onChange={this.handleChange} />
                 <button className="movein city-button" onClick={this.movedIn}>Move In</button>
                 <button className="moveout city-button" onClick={this.movedOut}>Move Out</button>
-                <div className="result">{`Latitude: ${this.props.cityLat}, Longitude: ${this.props.cityLong}, Population: ${this.props.population} People. It is ${howBig(this.props.population)} sized and is located at ${whichSphere(this.props.cityLat)}.`}</div>
+                <div className="result">
+                    <div>{`Latitude: ${this.props.cityLat}`}</div>
+                    <div>{`Longitude: ${this.props.cityLong}`}</div>
+                    <div>{`Population: ${this.props.population}`}</div>
+                    <div>{`It is ${howBig(this.props.population)} sized and is located at ${whichSphere(this.props.cityLat)}.`}</div>
+                </div>
                 <button className="delete city-button" onClick={this.props.onDelete}><i className="fa fa-trash" /></button>
             </div>
         )

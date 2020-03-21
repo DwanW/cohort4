@@ -143,8 +143,8 @@ class Community extends React.Component {
 
     getMostSouthern() {
         if (this.state.cityArr.length > 1) {
-            let mostS = this.state.cityArr[0].latitude;
-            let cityName = '';
+            let mostS = Number(this.state.cityArr[0].latitude);
+            let cityName = this.state.cityArr[0].name;
             this.state.cityArr.forEach((city) => ((Number(city.latitude) < mostS) ? (mostS = Number(city.latitude), cityName = city.name) : mostS));
             this.setState({ mostS: mostS, info: `The City Located Furthest South: ${cityName}` });
         }
