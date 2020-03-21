@@ -1,4 +1,4 @@
-* {
+/* * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -7,11 +7,10 @@
 body {
     background: radial-gradient(ellipse at top, #31b7c9 0%,#0c626d 50%,  #000000 100%);
     min-height: 100vh;
-}
-#root {
+} */
+#city-app {
     margin: 25px auto 25px auto;
     width: 60vw;
-    border-top: 1px solid rgba(151, 151, 151, 0.61);
     min-height: 500px;
     padding: 25px;
 }
@@ -67,7 +66,7 @@ input[type=number]::-webkit-outer-spin-button {
     display: block;
     text-align: center;
 }
-button {
+.city-button {
     border: none;
     display:inline-block;
     height: 50px;
@@ -79,16 +78,16 @@ button {
     margin: 0px 10px;
     transition: 0.3s;
 }
-button:hover {
+.city-button:hover {
   transform:scale(1.02); 
   font-size: 1.02rem;
 }
-button:active {
+.city-button:active {
     transform:scale(0.98); 
     font-size: 0.98rem;
     box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, 0.199); 
 }
-button:focus {
+.city-button:focus {
     outline:none;
 }
 .movein { 
@@ -101,9 +100,6 @@ button:focus {
     color: white;
     box-shadow: 1px 1px 5px 1px rgb(83, 83, 83);
 }
-.show {
-    box-shadow: 1px 1px 5px 1px rgb(83, 83, 83); 
-}
 
 .result {
     position:absolute;  
@@ -114,18 +110,18 @@ button:focus {
     font-family: "roboto";
     color: rgb(56, 56, 56);
     font-size: 20px;
-    transition: 0.4s;
-    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
 }
-
-.fadeIn {
-    opacity: 1;
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
 
 /* Controller CSS */
 #control-container {
     position: fixed;
-    bottom: 5%;
+    top: 3%;
     border : 1px solid skyblue;
     width: calc(60vw - 50px);
     padding: 5px 20px;
@@ -215,4 +211,15 @@ button:focus {
 }
 #create-city{
     box-shadow: 1px 1px 5px 1px rgb(83, 83, 83); 
+}
+
+#random {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 25px;
+    border-radius: 25px;
+    font-size: 25px;
+    background-color: transparent;
+    color: green;
 }

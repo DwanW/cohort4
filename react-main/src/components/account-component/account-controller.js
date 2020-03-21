@@ -70,15 +70,15 @@ class AccountController extends React.Component {
     }
 
     onDelete(idx) {
-        let tempArr = [...this.state.accArr];
+        let tempArr = [...this.state.cityArr];
         tempArr.splice(idx, 1);
-        this.setState({ accArr: tempArr });
+        this.setState({ cityArr: tempArr });
     }
 
     onValueChange(value, idx) {
-        let tempArr = [...this.state.accArr];
+        let tempArr = [...this.state.cityArr];
         tempArr[idx].balance = value;
-        this.setState({ accArr: tempArr })
+        this.setState({ cityArr: tempArr })
     }
 
     getTotal() {
@@ -133,7 +133,7 @@ class AccountController extends React.Component {
                     <button className="accbutton" id="getMax" onClick={this.getMax}>Max</button>
                     <button className="accbutton" id="getMin" onClick={this.getMin}>Min</button>
                 </div>
-                <div className={`name-prompt ${this.state.hideAccPrompt ? 'hide' : ''}`} ref={this.setWrapperRef} id="name-prompt">
+                <div className={`name-prompt ${this.state.hideAccPrompt ? 'hide' : ''}`} ref={this.setWrapperRef}>
                     <div className="prompt-header">Creating New Account</div>
                     <div id="name-prompt-action">
                         <input className="promptinput" type="text" id="accName" onChange={this.handleNameChange} placeholder="Enter Account Name" />
