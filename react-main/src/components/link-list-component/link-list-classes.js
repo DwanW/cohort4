@@ -29,20 +29,20 @@ class LinkedList {
         return currentNode;
     }
 
-    printList(){
+    printList() {
         const array = [];
         let currentNode = this.head;
-        while(currentNode !== null){
+        while (currentNode !== null) {
             array.push(currentNode.amount);
             currentNode = currentNode.forwardNode;
         }
         return array;
     }
 
-    printSubject(){
+    printSubject() {
         const array = [];
         let currentNode = this.head;
-        while(currentNode !== null){
+        while (currentNode !== null) {
             array.push(currentNode.subject);
             currentNode = currentNode.forwardNode;
         }
@@ -120,11 +120,18 @@ class LinkedList {
             this.position = 0;
             this.length = 0;
         } else {
-            this.position = this.position - 1;
-            let previousNode = this.nodeAtPosition();
-            let deletingNode = previousNode.forwardNode;
-            previousNode.forwardNode = deletingNode.forwardNode;
-            this.length = this.length - 1;
+            if (this.position > 0) {
+                this.position = this.position - 1;
+                let previousNode = this.nodeAtPosition();
+                let deletingNode = previousNode.forwardNode;
+                previousNode.forwardNode = deletingNode.forwardNode;
+                this.length = this.length - 1;
+            } else {
+                let deletingNode = this.head;
+                this.head = deletingNode.forwardNode;
+                this.length = this.length - 1;
+                
+            }
         }
     }
 
@@ -143,40 +150,41 @@ class LinkedList {
 
     //implementation of divide and conquer;
     //pure function using linked list with forwardNode property name;
+    //WARNING: return new sorted linked list, but breaks the original list;
     divdeThenMerge(list) {
         if (list.forwardNode === null) {
             return list;
         }
-        
+
         let count = 0;
         let countList = list;
         let leftPart = list;
         let leftPointer = list;
         let rightPart = null;
         //count the nodes within the list
-        while (countList.forwardNode !== null){
-            count ++;
+        while (countList.forwardNode !== null) {
+            count++;
             countList = countList.forwardNode;
         }
-        
+
 
         //divide to two parts
         let mid = Math.floor(count / 2);
         let count2 = 0;
 
-        while (count2 < mid ){
+        while (count2 < mid) {
             count2++;
             leftPointer = leftPointer.forwardNode;
         }
         rightPart = new LinkedList(leftPointer.forwardNode);
         //this step breaks the list with left part remain;
         leftPointer.forwardNode = null;
-        
 
-        return this.merge(this.divdeThenMerge(leftPart), this.divdeThenMerge(rightPart.head))
+
+        return this.merge(this.divdeThenMerge(leftPart), this.divdeThenMerge(rightPart.head));
     }
 
-    merge(leftlist, rightlist){
+    merge(leftlist, rightlist) {
         // Create new list
         let result = new LinkedList();
 
@@ -184,14 +192,14 @@ class LinkedList {
         let resultPointer = result.head;
         let pointerLeft = leftlist;
         let pointerRight = rightlist;
-        
+
         //logic: if true then
 
-        while (pointerLeft && pointerRight){
+        while (pointerLeft && pointerRight) {
             let tempAmount = null;
             let tempSubject = null;
 
-            
+
             if (pointerLeft.amount > pointerRight.amount) {
                 tempAmount = pointerRight.amount;
                 tempSubject = pointerRight.subject;
@@ -202,16 +210,16 @@ class LinkedList {
                 pointerLeft = pointerLeft.forwardNode;
             }
 
-            if (result.head === null){
-                result.head = new ListNode(tempSubject,tempAmount);
+            if (result.head === null) {
+                result.head = new ListNode(tempSubject, tempAmount);
                 resultPointer = result.head;
             } else {
-                resultPointer.forwardNode = new ListNode(tempSubject,tempAmount);
+                resultPointer.forwardNode = new ListNode(tempSubject, tempAmount);
                 resultPointer = resultPointer.forwardNode;
             }
         }
         resultPointer.forwardNode = pointerLeft;
-        while (resultPointer.forwardNode){
+        while (resultPointer.forwardNode) {
             resultPointer = resultPointer.forwardNode;
         }
         resultPointer.forwardNode = pointerRight;
