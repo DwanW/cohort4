@@ -14,7 +14,7 @@ const ListApp = () => {
 
     const [position, setPosition] = useState(0);
     const [subject, setSubject] = useState('');
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState();
 
 
 
@@ -70,9 +70,11 @@ const ListApp = () => {
                 }
                 break;
             case 'insert':
+                if (subject && amount){
                 list.insert(subject,amount);
                 setList(list);
                 setPosition(list.position);
+                }
                 break;
             case 'sort':
                 let sortedNode = list.divdeThenMerge(list.head);
@@ -86,7 +88,6 @@ const ListApp = () => {
     }
 
     const drawList = (list) => {
-        console.log(list.head);
         let currentNode = list.head;
         let nodeArr = [];
         while (currentNode !== null) {
@@ -103,13 +104,13 @@ const ListApp = () => {
             <div className='list-node-container'>
                 {
                     drawList(list).map((node, idx) => (
-                        <div key={idx} className={position === idx ? 'current-position' : ''}>{node.amount}</div>
+                        <div key={idx} className={`list-node ${position === idx ? 'current-position' : ''}`}>{node.subject}<br /> {node.amount}</div>
                     ))
                 }
             </div>
             <div className='list-control-primary'>
-                <input type='text' name='subject' value={subject} onChange={handleSubjectChange}/>
-                <input type='number' name='amount' value={amount} onChange={handleAmountChange}/>
+                <input className="list-input" type='text' placeholder="subject" value={subject} onChange={handleSubjectChange}/>
+                <input className="list-input" type='number' placeholder="amount" onChange={handleAmountChange}/>
                 <button className='control' onClick={() => changeList('insert')}><i className="fa fa-plus" aria-hidden="true"></i></button>
             </div>
             <div className='list-control-secondary'>

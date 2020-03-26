@@ -1,3 +1,74 @@
+#list-app {
+    margin:0 auto auto auto;
+}
+
+.list-node-container{
+    box-shadow: 1px 1px 5px 2px rgb(150, 144, 144);
+    display:flex;
+    align-items: flex-start ;
+    justify-content: flex-start;
+    height: 300px;
+    overflow-y: scroll;
+    width: 300px;   
+    padding: 20px;
+    flex-wrap: wrap;
+    font-size: 12px;
+}
+
+.list-node {
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+    padding: 3px 5px;
+    margin: 10px;
+    background-color: green;
+    position: relative;
+    overflow:wrap;
+    text-align: start;
+    transition: 0.3s;
+}
+
+.list-node:before{
+    content: "";
+    position: absolute;
+    right: -10px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 10px solid black;
+    border-top: 30px solid transparent;
+    border-bottom: 20px solid transparent;
+  }
+
 .current-position {
     background-color:red;
+    transform:scale(1.2)
+}
+
+.list-input{
+    color: white;
+    background: transparent;
+    border:1px solid white;
+    text-align: center;
+    margin: 20px 10px;
+    width: 120px;
+    line-height: 20px;
+}
+
+.control{
+    border:none;
+    height: 30px;
+    width: 30px;
+    margin: 10px;
+    border-radius: 15px;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.control:hover{
+    background-color: black;
+    color: white;
+}
+.control:active{
+    transform:scale(0.9)
 }
