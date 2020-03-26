@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { ListNode, LinkedList } from './link-list-classes';
-import './link-list.css';
+import './link-list.styles.css';
 
 const exampleList = { "subject": "apple", "amount": 12, "forwardNode": { "subject": "orange", "amount": 100, "forwardNode": { "subject": "banana", "amount": 75, "forwardNode": null } } };
 
