@@ -1,0 +1,25 @@
+#stack-app {
+    margin:0 auto auto auto;
+}
+
+.activated {
+    border: 1px solid red;
+}
+.demo-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stack-container {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.queue-container {
+    display: flex;
+    flex-direction: column-reverse;  
+}
+
+.added-item {
+    color: green;
+}

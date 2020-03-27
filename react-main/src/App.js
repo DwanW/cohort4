@@ -15,7 +15,7 @@ import Accounts from './components/account-component/account-controller';
 import './App.css';
 import Community from './components/city-component/community';
 import LinkApp from './components/link-list-component/link-list-function.component';
-import StackApp from './components/stack-component/stack.component';
+import StackApp from './components/stack-component/stack-queue.component';
 
 const Header = () => (
   <header className="App-header">
