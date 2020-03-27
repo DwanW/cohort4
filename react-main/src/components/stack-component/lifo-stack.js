@@ -6,7 +6,7 @@ const LIFO = ({ stack, isStack, stackTop, onClick }) => (
         <div className='stack-container'>
             {
                 stack.map((e, idx) => (
-                    <div key={idx} className={`${idx === stackTop ? 'added-item' : ''} stack-item`}>{e.title}</div>
+                    <div key={idx} className={`${idx === stackTop ? 'added-item' : ''} stack-item`}><span className='label'>{e.title}</span></div>
                 ))
             }
         </div>

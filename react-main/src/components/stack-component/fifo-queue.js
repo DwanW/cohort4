@@ -6,7 +6,7 @@ const FIFO = ({ queue, isStack, queueBack, onClick }) => (
         <div className='queue-container'>
             {
                 queue.map((e, idx) => (
-                    <div key={idx} className={`${idx === queueBack ? 'added-item' : ''} stack-item`}>{e.title}</div>
+                    <div key={idx} className={`${idx === queueBack ? 'added-item' : ''} stack-item`}><span className='label'>{e.title}</span></div>
                 ))
             }
         </div>

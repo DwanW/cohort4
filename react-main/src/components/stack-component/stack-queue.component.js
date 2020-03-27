@@ -6,8 +6,6 @@ import FIFO from './fifo-queue';
 
 import './stack.styles.css';
 
-
-
 const StackApp = () => {
     const [stackArr, setStackArr] = useState([]);
     const [queueArr, setQueueArr] = useState([]);
@@ -38,7 +36,6 @@ const StackApp = () => {
             throw (error);
         }
     }
-
 
     const handlePutIn = () => {
         if (isStack) {
