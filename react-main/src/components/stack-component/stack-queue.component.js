@@ -12,7 +12,11 @@ const StackApp = () => {
     const [stackTop, setStackTop] = useState(-1);
     const [queueBack, setQueueBack] = useState(-1);
     const [isStack, setIsStack] = useState(true);
+
+    const [isAddingStack, setIsAddingStack] = useState(true);
+    const [isAddingQueue, setIsAddingQueue] = useState(false);
     const [apiData, setApiData] = useState(['doctor-zombie', 'lawyer-zombie', 'developer-zombie']);
+    
 
     useEffect(() => {
         fetchData();
@@ -43,11 +47,15 @@ const StackApp = () => {
             let tempArr = [...stackArr, apiData[randomIdx]];
             setStackTop(stackTop + 1);
             setStackArr(tempArr);
+            setIsAddingStack(true);
+            setIsAddingQueue(false);
         } else {
             let randomIdx = Math.round(Math.random() * 100);
             let tempArr = [...queueArr, apiData[randomIdx]];
             setQueueBack(queueBack + 1);
             setQueueArr(tempArr);
+            setIsAddingQueue(true);
+            setIsAddingStack(false);
         }
     }
 
@@ -59,6 +67,8 @@ const StackApp = () => {
                 tempArr.pop();
                 setStackTop(stackTop - 1);
                 setStackArr(tempArr);
+                setIsAddingQueue(false);
+                setIsAddingStack(false);
             }
         } else {
             if (queueBack === -1) return;
@@ -67,6 +77,8 @@ const StackApp = () => {
                 tempArr.shift();
                 setQueueBack(queueBack - 1);
                 setQueueArr(tempArr);
+                setIsAddingQueue(false);
+                setIsAddingStack(false);
             }
         }
     }
@@ -84,12 +96,14 @@ const StackApp = () => {
                     isStack={isStack}
                     stackTop={stackTop}
                     onClick={() => setIsStack(true)}
+                    isAdding={isAddingStack}
                 />
                 <FIFO
                     queue={queueArr}
                     isStack={isStack}
                     queueBack={queueBack}
                     onClick={() => setIsStack(false)}
+                    isAdding={isAddingQueue}
                 />
             </div>
         </div>

@@ -11,8 +11,7 @@
 }
 
 .stack-container {
-    display: flex;
-    flex-direction: column-reverse;
+    position: relative;
     overflow: hidden;
     width: 100px;
     font-size: 12px;
@@ -20,8 +19,7 @@
 }
 
 .queue-container {
-    display: flex;
-    flex-direction: column-reverse;  
+    position: relative;
     overflow: hidden;
     width: 100px;
     font-size: 12px;
@@ -30,16 +28,30 @@
 
 .stack-item {
     box-sizing: border-box;
+    position:absolute;
+    width: 92px;
+    height: 35px;
     background-color: gray;
     border-radius: 3px;
     margin: 3px;
     padding: 1px;
+    overflow:auto;
+    transition: 0.3s;
 }
 
 .added-item {
     background: green;
 }
 
-/* @keyframes {
+.drop-in {
+    animation: dropIn 1s 0s cubic-bezier(.32,.96,.47,.95) forwards;
+}
 
-} */
+@keyframes dropIn{
+    from {
+        transform: translate(-30px, -100px)
+    }
+    to {
+        transform: translate((0px, 0px))
+    }
+}
