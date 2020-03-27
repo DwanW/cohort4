@@ -43,6 +43,9 @@
     background: green;
 }
 
+
+/* animation n stuff */
+
 .drop-in {
     animation: dropIn 1s 0s cubic-bezier(.32,.96,.47,.95) forwards;
 }
@@ -53,5 +56,47 @@
     }
     to {
         transform: translate((0px, 0px))
+    }
+}
+
+.drop-out{
+    animation: dropOut 1s 0s cubic-bezier(.32,.96,.47,.95) forwards;
+}
+
+@keyframes dropOut{
+    from {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    to {
+        transform: translate(0px, 100px);
+        opacity: 0;
+    }
+}
+
+.fly-out {
+    animation: flyOut 1s 0s cubic-bezier(.32,.96,.47,.95) forwards;
+}
+
+@keyframes flyOut {
+    from {
+        transform: translate(0px,0px);
+        opacity:1;
+    }
+    to {
+        transform: translate(30px, -100px);
+        opacity: 0;
+    }
+}
+.move-down {
+    animation: moveDown 1s 0s cubic-bezier(.32,.96,.47,.95) forwards;
+}
+
+@keyframes moveDown {
+    from {
+        transform: translate(0px,0px);
+    }
+    to {
+        transform: translate(0px, 35px);
     }
 }

@@ -13,8 +13,11 @@ const StackApp = () => {
     const [queueBack, setQueueBack] = useState(-1);
     const [isStack, setIsStack] = useState(true);
 
-    const [isAddingStack, setIsAddingStack] = useState(true);
-    const [isAddingQueue, setIsAddingQueue] = useState(false);
+    //animation hooks
+    const [isAdding, setIsAdding] = useState(true);
+
+
+    //on render data
     const [apiData, setApiData] = useState(['doctor-zombie', 'lawyer-zombie', 'developer-zombie']);
     
 
@@ -47,15 +50,13 @@ const StackApp = () => {
             let tempArr = [...stackArr, apiData[randomIdx]];
             setStackTop(stackTop + 1);
             setStackArr(tempArr);
-            setIsAddingStack(true);
-            setIsAddingQueue(false);
+            setIsAdding(true);
         } else {
             let randomIdx = Math.round(Math.random() * 100);
             let tempArr = [...queueArr, apiData[randomIdx]];
             setQueueBack(queueBack + 1);
             setQueueArr(tempArr);
-            setIsAddingQueue(true);
-            setIsAddingStack(false);
+            setIsAdding(true);
         }
     }
 
@@ -67,8 +68,7 @@ const StackApp = () => {
                 tempArr.pop();
                 setStackTop(stackTop - 1);
                 setStackArr(tempArr);
-                setIsAddingQueue(false);
-                setIsAddingStack(false);
+                setIsAdding(false);
             }
         } else {
             if (queueBack === -1) return;
@@ -77,8 +77,7 @@ const StackApp = () => {
                 tempArr.shift();
                 setQueueBack(queueBack - 1);
                 setQueueArr(tempArr);
-                setIsAddingQueue(false);
-                setIsAddingStack(false);
+                setIsAdding(false);
             }
         }
     }
@@ -96,14 +95,14 @@ const StackApp = () => {
                     isStack={isStack}
                     stackTop={stackTop}
                     onClick={() => setIsStack(true)}
-                    isAdding={isAddingStack}
+                    isAdding={isAdding}
                 />
                 <FIFO
                     queue={queueArr}
                     isStack={isStack}
                     queueBack={queueBack}
                     onClick={() => setIsStack(false)}
-                    isAdding={isAddingQueue}
+                    isAdding={isAdding}
                 />
             </div>
         </div>

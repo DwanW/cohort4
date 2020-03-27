@@ -7,7 +7,7 @@ const FIFO = ({ queue, isStack, queueBack, onClick, isAdding }) => (
             {
                 queue.map((e, idx) => (
                     <div key={idx}
-                        className={`${idx === queueBack ? 'added-item' + (isAdding ? ' drop-in' : '') : ''} stack-item`}
+                        className={`${idx === queueBack ? 'added-item' + (isAdding && !isStack ? ' drop-in' : '') : ''} stack-item`}
                         style={{ bottom: `${idx * 40}px` }}
                     >
                         <span className='label'>{e.title}</span>
