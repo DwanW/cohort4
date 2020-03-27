@@ -76,7 +76,7 @@ const StackApp = () => {
             <h3>Stack and Queue Demo</h3>
             <div className="stack-control-container">
                 <button className="stack-control" onClick={handlePutIn}>Put In</button>
-                <button className="stack-control" onClick={handleTakeOut}>Put Out</button>
+                <button className="stack-control" onClick={handleTakeOut}>Take Out</button>
             </div>
             <div className='demo-container'>
                 <LIFO
