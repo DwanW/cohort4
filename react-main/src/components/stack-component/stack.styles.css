@@ -1,9 +1,39 @@
 #stack-app {
     margin:0 auto auto auto;
 }
+.stack-control {
+    border-radius: 3px;
+    border: none;
+    margin: 5px 10px;
+    padding: 5px 4px;
+    width: 100px;
+    background: linear-gradient(to bottom right, rgb(182, 182, 182), rgb(0, 183, 255));
+    color:white;
+    font-weight: 600;
+    font-size: 20px;
+    transition: 0.1s;
+
+}
+.stack-control:hover{
+    transform: scale(1.2)
+}
+.stack-control:active{
+    transform: scale(1.1)
+}
+.queue-component{
+    background: rgba(255, 255, 255, 0.185);
+    border-radius: 3px;
+    border: 1px solid gray;
+}
+.stack-component {
+    background: rgba(255, 255, 255, 0.185);
+    border-radius: 3px;
+    border: 1px solid gray;
+}
 
 .activated {
-    border: 1px solid red;
+    box-shadow: 1px 1px 10px 3px rgb(105, 105, 105) inset;
+    background: linear-gradient(to bottom, rgb(182, 182, 182), rgb(0, 183, 255))
 }
 .demo-container {
     display: flex;
@@ -23,7 +53,7 @@
     overflow: hidden;
     width: 100px;
     font-size: 12px;
-    height: 300px
+    height: 300px;
 }
 
 .stack-item {
@@ -35,7 +65,7 @@
     border-radius: 3px;
     margin: 3px;
     padding: 1px;
-    overflow:auto;
+    overflow:hidden;
     transition: 0.3s;
 }
 
@@ -59,7 +89,9 @@
     }
 }
 
-.drop-out{
+
+/* come back to this when I find a better solution
+ .drop-out{
     animation: dropOut 1s 0s cubic-bezier(.32,.96,.47,.95) forwards;
 }
 
@@ -99,4 +131,4 @@
     to {
         transform: translate(0px, 35px);
     }
-}
+} */

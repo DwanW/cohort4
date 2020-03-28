@@ -1,12 +1,12 @@
 import React from 'react';
-import {useState,useEffect} from 'react';
+// import {useState,useEffect} from 'react';
 
 const LIFO = ({ stack, isStack, stackTop, onClick, isAdding }) => {
-    const [shouldUnmountRender, setUnmountRender] = useState(false);
+    // const [shouldUnmountRender, setUnmountRender] = useState(false);
 
-    useEffect(() => {
-        if (true) setUnmountRender(true);
-      }, []);
+    // useEffect(() => {
+    //     if (true) setUnmountRender(true);
+    //   }, []);
 
     return (
         <div className={`${isStack ? 'activated' : ''} stack-component`} onClick={onClick}>
