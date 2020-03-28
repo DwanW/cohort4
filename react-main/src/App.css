@@ -48,10 +48,6 @@ button:focus  {
 }
 
 
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -72,4 +68,13 @@ button:focus  {
 .active {
   background-color:#a7ffeb;
   box-shadow: 1px 1px 5px 1px #64ffda;
+}
+
+.theme-control{
+  position: absolute;
+  top:0;
+  right:0;
+  width: 50px;
+  height:50px;
+  border-radius: 28px;
 }

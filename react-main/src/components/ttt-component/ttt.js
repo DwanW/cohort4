@@ -1,6 +1,7 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import './ttt.css';
+import { ThemeContext } from '../../ThemeContext';
 
 function Square(props) {
     return (
@@ -55,7 +56,7 @@ class Game extends React.Component {
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         if (!this.props.isFirst) {
             const history = this.state.history.slice(0, this.state.stepNumber + 1);
             const current = history[history.length - 1];
@@ -229,6 +230,8 @@ function Ttt() {
     const [gameStart, setGameStart] = useState(false);
     const [isFirst, setIsFirst] = useState(true);
 
+    const theme = useContext(ThemeContext);
+
     const handleFirstTurn = (isFirst) => {
         setIsFirst(isFirst);
         // console.log(isFirst);
@@ -239,14 +242,14 @@ function Ttt() {
 
     return (
         <React.Fragment>
-            <div className='game-name'>Tic Tac Toe With AI</div>
+            <div className='game-name' style={{color: theme.text}}>Tic Tac Toe With AI</div>
             {
                 (gameStart) ?
-                    <Game isFirst={isFirst} noLoop={()=>setIsFirst(true)}/> : (
+                    <Game isFirst={isFirst} noLoop={() => setIsFirst(true)} /> : (
                         <div className="game-menu">
-                        <div className="check" style={{top: `${isFirst?'50px':'85px'}` }}><i className='fa fa-check selected' aria-hidden="true" /></div>
-                        <button className='game-menu-button' onClick={() => {handleFirstTurn(true)}}>Go First</button>
-                        <button className='game-menu-button' onClick={() => {handleFirstTurn(false)}}>Go Second</button>
+                            <div className="check" style={{ top: `${isFirst ? '50px' : '85px'}` }}><i className='fa fa-check selected' aria-hidden="true" /></div>
+                            <button className='game-menu-button' onClick={() => { handleFirstTurn(true) }}>Go First</button>
+                            <button className='game-menu-button' onClick={() => { handleFirstTurn(false) }}>Go Second</button>
                             <button className="game-menu-button" onClick={handleGameStart}>Start game</button>
                         </div>)
             }

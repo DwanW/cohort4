@@ -1,7 +1,8 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { ListNode, LinkedList } from './link-list-classes';
+import { useState, useEffect, useContext } from 'react';
+import { LinkedList } from './link-list-classes';
 import './link-list.styles.css';
+import { ThemeContext } from '../../ThemeContext';
 
 const exampleList = { "subject": "apple", "amount": 12, "forwardNode": { "subject": "orange", "amount": 100, "forwardNode": { "subject": "banana", "amount": 75, "forwardNode": null } } };
 
@@ -15,6 +16,8 @@ const ListApp = () => {
     const [position, setPosition] = useState(0);
     const [subject, setSubject] = useState('');
     const [amount, setAmount] = useState();
+
+    const theme = useContext(ThemeContext)
 
 
 
@@ -100,7 +103,7 @@ const ListApp = () => {
 
     return (
         <div id="list-app">
-            <h3 className='list-header'>Linked List Data Structure</h3>
+            <h3 className='list-header' style={{color:theme.text}}>Linked List Data Structure</h3>
             <div className='list-node-container'>
                 {
                     drawList(list).map((node, idx) => (

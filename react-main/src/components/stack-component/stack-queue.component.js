@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState, useEffect } from 'react';
 
 import LIFO from './lifo-stack';
 import FIFO from './fifo-queue';
 
 import './stack.styles.css';
+import { ThemeContext } from '../../ThemeContext';
 
 const StackApp = () => {
     const [stackArr, setStackArr] = useState([]);
@@ -19,7 +20,10 @@ const StackApp = () => {
 
     //on render data
     const [apiData, setApiData] = useState(['doctor-zombie', 'lawyer-zombie', 'developer-zombie']);
-    
+
+    //context hook
+    const theme = useContext(ThemeContext);
+
 
     useEffect(() => {
         fetchData();
@@ -84,7 +88,7 @@ const StackApp = () => {
 
     return (
         <div id="stack-app">
-            <h3>Stack and Queue Demo</h3>
+            <h3 style={{ color: theme.text }}>Stack and Queue Demo</h3>
             <div className="stack-control-container">
                 <button className="stack-control" onClick={handlePutIn}>Put In</button>
                 <button className="stack-control" onClick={handleTakeOut}>Take Out</button>
