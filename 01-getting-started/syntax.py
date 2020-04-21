@@ -25,6 +25,8 @@ def define_type(item):
         return 'integer'
     elif type(item) is float:
         return 'float'
+    elif type(item) is str:
+        return 'string'
     elif type(item) is bool:
         return 'boolean'
     elif type(item) is dict:
@@ -36,7 +38,7 @@ def define_type(item):
     elif type(item) is set:
         return 'set'
     elif type(item) is None:
-        return 'None'
+        return None
 
 
 def is_over_fifty(num):
