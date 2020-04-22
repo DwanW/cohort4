@@ -73,10 +73,16 @@ const ListApp = () => {
                 }
                 break;
             case 'insert':
-                if (subject && amount){
-                list.insert(subject,amount);
-                setList(list);
-                setPosition(list.position);
+                if (subject && amount) {
+                    if (list.length === 0) {
+                        let tempList = new LinkedList(list.insert(subject, amount));
+                        setList(tempList);
+                        setPosition(tempList.position);
+                    } else {
+                        list.insert(subject, amount);
+                        setList(list);
+                        setPosition(list.position);
+                    }
                 }
                 break;
             case 'sort':
@@ -103,7 +109,7 @@ const ListApp = () => {
 
     return (
         <div id="list-app">
-            <h3 className='list-header' style={{color:theme.text}}>Linked List Data Structure</h3>
+            <h3 className='list-header' style={{ color: theme.text }}>Linked List Data Structure</h3>
             <div className='list-node-container'>
                 {
                     drawList(list).map((node, idx) => (
@@ -112,8 +118,8 @@ const ListApp = () => {
                 }
             </div>
             <div className='list-control-primary'>
-                <input className="list-input" type='text' placeholder="subject" value={subject} onChange={handleSubjectChange}/>
-                <input className="list-input" type='number' placeholder="amount" onChange={handleAmountChange}/>
+                <input className="list-input" type='text' placeholder="subject" value={subject} onChange={handleSubjectChange} />
+                <input className="list-input" type='number' placeholder="amount" onChange={handleAmountChange} />
                 <button className='control' onClick={() => changeList('insert')}><i className="fa fa-plus" aria-hidden="true"></i></button>
             </div>
             <div className='list-control-secondary'>

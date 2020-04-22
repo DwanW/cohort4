@@ -36,7 +36,6 @@ const initData = async () => {
 
     document.getElementById("root").addEventListener('click', async (e) => {
         let searchName = e.target.parentNode.children[0].textContent;
-        console.log(e.target.parentNode.parentNode.children[0]);
         if (e.target && e.target.className === 'movein') {
             // console.log(e.target.parentNode.children[1].value)
             let updatedObj;

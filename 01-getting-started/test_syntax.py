@@ -2,6 +2,8 @@
 #pip install pytest
 #cd into test folder
 #run pytest filename.py or just pytest in the folder
+#test naming function start with test_ or end with _test
+#class test start with Test string
 
 from syntax import *
 import pytest
