@@ -52,3 +52,7 @@ def test_tupleMethods():
 def test_setMethods():
     assert merge_sets({1,3,4}, {3,6,8}) == {1,3,4,6,8}
     assert merge_sets({12}, {34}) == {12,34}
+
+def test_email():
+    assert email("Larry", "Shumlich") == 'larry.shumlich@evolveu.ca'
+    assert email("Heiko", "Peters") == 'heiko.peters@evolveu.ca'

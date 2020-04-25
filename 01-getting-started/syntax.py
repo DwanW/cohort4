@@ -101,3 +101,6 @@ def merge_sets(set1, set2):
     return new_set
 
 print(merge_sets({1,2},{4,5}))
+
+def email(fname, lname):
+    return f'{fname.lower()}.{lname.lower()}@evolveu.ca'
