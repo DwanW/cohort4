@@ -37,7 +37,7 @@ document.getElementById("remove-end").addEventListener('click', () => {
 
 // event lisntener for cards, and what I'm feeling right now? (╯°□°）╯︵ ┻━┻)
 
-var cardID = 1;
+let cardID = 1;
 
 document.getElementById("addCard").addEventListener('click', () => {
     //append card box
