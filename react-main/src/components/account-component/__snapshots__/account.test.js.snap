@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Account Component test should render Account Component 1`] = `ShallowWrapper {}`;

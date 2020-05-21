@@ -138,7 +138,7 @@ class AccountController extends React.Component {
                     <div id="name-prompt-action">
                         <input className="promptinput" type="text" id="accName" onChange={this.handleNameChange} placeholder="Enter Account Name" />
                         <input className="promptinput" type="number" id="accBalance" onChange={this.handleBalanceChange} placeholder="Enter Balance" />
-                        <button className="accbutton" onClick={this.addAcc}>Create this Accout</button>
+                        <button className="accbutton" id="createAcc" onClick={this.addAcc}>Create this Accout</button>
                     </div>
                 </div>
                 <div className={`name-prompt ${this.state.hideInfoPrompt ? 'hide' : ''}`} ref={this.setWrapperRef} id="info-prompt">
