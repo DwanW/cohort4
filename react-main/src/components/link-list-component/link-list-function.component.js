@@ -19,8 +19,6 @@ const ListApp = () => {
 
     const theme = useContext(ThemeContext)
 
-
-
     const calculateLength = (list) => {
         let count = 0;
         let currentNode = list.head;
@@ -31,13 +29,6 @@ const ListApp = () => {
         let tempList = list;
         tempList.length = count;
         setList(tempList);
-    }
-    const handleSubjectChange = event => {
-        setSubject(event.target.value);
-    }
-
-    const handleAmountChange = event => {
-        setAmount(event.target.value);
     }
 
     const changeList = (action) => {
@@ -118,8 +109,8 @@ const ListApp = () => {
                 }
             </div>
             <div className='list-control-primary'>
-                <input className="list-input" type='text' placeholder="subject" value={subject} onChange={handleSubjectChange} />
-                <input className="list-input" type='number' placeholder="amount" onChange={handleAmountChange} />
+                <input className="list-input" type='text' placeholder="subject" name="subject" onChange={e => setSubject(e.target.value)} />
+                <input className="list-input" type='number' placeholder="amount" name="amount" onChange={e => setAmount(e.target.value)} />
                 <button className='control' onClick={() => changeList('insert')}><i className="fa fa-plus" aria-hidden="true"></i></button>
             </div>
             <div className='list-control-secondary'>

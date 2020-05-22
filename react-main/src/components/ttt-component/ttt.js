@@ -234,7 +234,6 @@ function Ttt() {
 
     const handleFirstTurn = (isFirst) => {
         setIsFirst(isFirst);
-        // console.log(isFirst);
     }
     const handleGameStart = () => {
         setGameStart(true);
@@ -256,6 +255,5 @@ function Ttt() {
         </React.Fragment>
     )
 }
-// ========================================
 
 export default Ttt;

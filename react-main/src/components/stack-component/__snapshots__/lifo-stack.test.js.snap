@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`queue component test should render queue component correctly 1`] = `ShallowWrapper {}`;

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Community Component test should render Community Component 1`] = `ShallowWrapper {}`;

@@ -41,9 +41,7 @@ const StackApp = () => {
                 });
             const data = await response.json();
             setApiData(data.results);
-            console.log(data.results);
         } catch (error) {
-            console.error('Error:', error);
             throw (error);
         }
     }
@@ -110,7 +108,7 @@ const StackApp = () => {
                 />
             </div>
         </div>
-    )
+    );
 };
 
 export default StackApp;

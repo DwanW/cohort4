@@ -1,20 +1,23 @@
 import React from 'react';
 
-const whichSphere = (latitude) => {
-    if (Number(latitude) > 0) {
+export const whichSphere = (latitude) => {
+    if (Number(latitude) > 0 && Number(latitude) <= 180) {
         return "North Hemisphere";
-    } else if (Number(latitude) < 0) {
+    } else if (Number(latitude) < 0 && Number(latitude) >= -180) {
         return "South Hemisphere";
-    } else {
+    } else if (Number(latitude) === 0) {
         return "Equator";
+    } else {
+        return "Latitude Input is invalid";
     }
 }
 
-const howBig = (population) => {
+export const howBig = (population) => {
     return (population > 100000) ? "City" :
         (population > 20000) ? "Large Town" :
             (population > 1000) ? "Town" :
-                (population > 100) ? "Village" : "Hamlet";
+                (population > 100) ? "Village" :
+                    (population > 0) ? "Hamlet" : "Incorrect population input";
 }
 
 class City extends React.Component {

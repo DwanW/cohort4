@@ -2,7 +2,7 @@ import React from 'react';
 import './community.styles.css';
 import City from './city';
 
-async function postData(url = '', data = {}) {
+export async function postData(url = '', data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
         method: 'POST',     // *GET, POST, PUT, DELETE, etc.
