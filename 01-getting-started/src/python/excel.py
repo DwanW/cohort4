@@ -2,6 +2,52 @@ from openpyxl import load_workbook
 import os
 import datetime
 
+## data validation
+def validateData(directory, filename):
+
+    isDataValid = False
+    ws_list = ["customer", "invoice", "invoice_list", "product"]
+    missing_ws_list = []
+
+    try:
+        path = os.path.join(directory, filename)
+        wb = load_workbook(path)
+
+        for name in ws_list:
+            if name in wb.sheetnames:
+                continue
+            else:
+                missing_ws_list.append(name)
+        if len(missing_ws_list) != 0:
+            raise EnvironmentError
+
+        invoice_ws = wb["invoice"]
+        customer_ws = wb["customer"]
+        invoice_list_ws = wb["invoice_list"]
+        product_ws = wb["product"]
+
+        customer_dict = {}
+        product_dict = {}
+        invoice_dict = {}
+        invoice_list_dict = {}
+
+        storeWbIntoDict(customer_ws,customer_dict)
+        storeWbIntoDict(product_ws,product_dict)
+        storeWbIntoDict(invoice_ws,invoice_dict)
+        storeInvoiceList(invoice_list_ws, invoice_list_dict)
+
+    except EnvironmentError:
+        print("Data is invalid due to the following reason:")
+        print(f'Missing WorkSheet:')
+        string = ''
+        for ws in missing_ws_list:
+            string += f'{ws}'
+        print(f"Can not find the following worksheet/s: '{string}'")
+    except:
+        print("Directory path is invalid")
+
+validateData('./data_tables','shopdata.xlsx')
+## insert data into dict
 wb = load_workbook('./data_tables/shopdata.xlsx')
 
 invoice_ws = wb["invoice"]
@@ -44,6 +90,8 @@ storeWbIntoDict(product_ws,product_dict)
 storeWbIntoDict(invoice_ws,invoice_dict)
 storeInvoiceList(invoice_list_ws, invoice_list_dict)
 
+## create invoice from dictionaries
+
 def createInvoice(invoiceID):
     if invoiceID not in invoice_dict:
         return "invoice does not exist"
@@ -71,5 +119,10 @@ def createInvoice(invoiceID):
         for item in invoice_item_chart:
             invoice.write(f'{item["Item"]}          {item["Quantity"]}        ${item["Price"]}.00            ${item["Amount"]}.00 \n \n')
         invoice.write(f"SUBTOTAL:${total}.00\n TAX:${round(total * 0.1, 2)}")
-        
-createInvoice(1)
+
+# if __name__ == '__main__':
+#     print("***creating invoice***")
+#     createInvoice(2)
+#     print("***invoice successfully created***")
+
+

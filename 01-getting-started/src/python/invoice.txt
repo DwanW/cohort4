@@ -1,18 +1,18 @@
 Invoice For:
- Chloe Jones 
- Chloe.J@gmail.com 
+ Henry Taylor 
+ Henry.T@gmail.com 
  
-Invoice ID: 1 
- Sent: 2020-05-09 
- Due: 2020-05-23 
+Invoice ID: 2 
+ Sent: 2020-07-08 
+ Due: 2020-07-22 
  
 ITEM            Quantity    Unit Price      Amount 
  
-brown brim          2        $25.00            $50.00 
+green beanie          10        $18.00            $180.00 
  
-blue beanie          1        $18.00            $18.00 
+gray jean jacket          5        $90.00            $450.00 
  
-gray brim          3        $25.00            $75.00 
+tan trench          3        $180.00            $540.00 
  
-SUBTOTAL:$143.00
- TAX:$14.3
+SUBTOTAL:$1170.00
+ TAX:$117.0
