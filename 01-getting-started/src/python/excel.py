@@ -25,17 +25,23 @@ def merge_data(directory, filename):
     path = os.path.join(directory, filename)
     wb = load_workbook(path)
 
-    new_wb = Workbook()
-    new_invoice_ws = new_wb.create_sheet("invoice")
-    new_invoice_ws.append(["Invoice_ID","Customer_ID", "Date_issued"])
-    new_customer_ws = new_wb.create_sheet("customer")
-    new_customer_ws.append(["ID","FirstName", "LastName", "Email", "Phone#"])
-    new_invoice_list_ws = new_wb.create_sheet("invoice_list")
-    new_invoice_list_ws.append(["Item_ID","Invoice_ID","Quantity"])
-    new_product_ws = new_wb.create_sheet("product")
-    new_product_ws.append(["Item_ID", "Item_name", "Item_price"])
-    new_wb.remove(new_wb['Sheet'])
-    print(new_wb.sheetnames)
+    if (os.path.exists('merged.xlsx')):
+        new_wb = load_workbook('merged.xlsx')
+        new_invoice_ws = new_wb["invoice"]
+        new_customer_ws = new_wb["customer"]
+        new_invoice_list_ws = new_wb["invoice_list"]
+        new_product_ws = new_wb["product"]
+    else:
+        new_wb = Workbook()
+        new_invoice_ws = new_wb.create_sheet("invoice")
+        new_invoice_ws.append(["Invoice_ID","Customer_ID", "Date_issued"])
+        new_customer_ws = new_wb.create_sheet("customer")
+        new_customer_ws.append(["ID","FirstName", "LastName", "Email", "Phone#"])
+        new_invoice_list_ws = new_wb.create_sheet("invoice_list")
+        new_invoice_list_ws.append(["Item_ID","Invoice_ID","Quantity"])
+        new_product_ws = new_wb.create_sheet("product")
+        new_product_ws.append(["Item_ID", "Item_name", "Item_price"])
+        new_wb.remove(new_wb['Sheet'])
 
     invoice_ws = wb["invoice"]
     customer_ws = wb["customer"]
@@ -203,6 +209,7 @@ if __name__ == '__main__':
     print(".....creating invoice.....")
     createInvoice(int(invoice_id))
     print("***invoice successfully created***")
-    # merge_data("./data_tables", "shopdata.xlsx")
+    merge_data("./data_tables", "shopdata.xlsx")
+
 
 

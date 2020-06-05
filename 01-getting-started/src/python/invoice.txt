@@ -1,18 +1,18 @@
 Invoice For:
- Stephen William 
- Stephen.W@gmail.com 
+ Jessica Johnson 
+ Jessica.J@gmail.com 
  
-Invoice ID: 9 
- Sent: 2020-06-28 
- Due: 2020-07-12 
+Invoice ID: 7 
+ Sent: 2020-05-11 
+ Due: 2020-05-25 
  
 ITEM            Quantity    Unit Price      Amount 
  
-green beanie          4        $18.00            $72.00 
+tan trench          3        $180.00            $540.00 
  
-Adidas NMD          2        $220.00            $440.00 
+black jean jacket          3        $90.00            $270.00 
  
-brown shearling          1        $165.00            $165.00 
+read beanie          1        $18.00            $18.00 
  
-SUBTOTAL:$677.00
- TAX:$67.7
+SUBTOTAL:$828.00
+ TAX:$82.8
