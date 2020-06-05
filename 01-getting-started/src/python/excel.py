@@ -1,18 +1,22 @@
 from openpyxl import load_workbook
+from openpyxl.worksheet.datavalidation import DataValidation
 import os
 import datetime
 
+## data merging
+def merge_data(directory, filename):
+    
+
 ## data validation
-def validateData(directory, filename):
+def validateWB(directory, filename):
 
     isDataValid = False
     ws_list = ["customer", "invoice", "invoice_list", "product"]
     missing_ws_list = []
+    path = os.path.join(directory, filename)
+    wb = load_workbook(path)
 
     try:
-        path = os.path.join(directory, filename)
-        wb = load_workbook(path)
-
         for name in ws_list:
             if name in wb.sheetnames:
                 continue
@@ -21,20 +25,6 @@ def validateData(directory, filename):
         if len(missing_ws_list) != 0:
             raise EnvironmentError
 
-        invoice_ws = wb["invoice"]
-        customer_ws = wb["customer"]
-        invoice_list_ws = wb["invoice_list"]
-        product_ws = wb["product"]
-
-        customer_dict = {}
-        product_dict = {}
-        invoice_dict = {}
-        invoice_list_dict = {}
-
-        storeWbIntoDict(customer_ws,customer_dict)
-        storeWbIntoDict(product_ws,product_dict)
-        storeWbIntoDict(invoice_ws,invoice_dict)
-        storeInvoiceList(invoice_list_ws, invoice_list_dict)
 
     except EnvironmentError:
         print("Data is invalid due to the following reason:")
@@ -45,8 +35,50 @@ def validateData(directory, filename):
         print(f"Can not find the following worksheet/s: '{string}'")
     except:
         print("Directory path is invalid")
+    
+    invoice_ws = wb["invoice"]
+    customer_ws = wb["customer"]
+    invoice_list_ws = wb["invoice_list"]
+    product_ws = wb["product"]
 
-validateData('./data_tables','shopdata.xlsx')
+    validateWS(customer_ws, "customer")
+    validateWS(invoice_ws, "invoice")
+    validateWS(invoice_list_ws, "invoice_list")
+    validateWS(product_ws, "product")
+
+    wb.save('./data_tables/shopdata.xlsx')
+
+def validateWS(ws, wsName):
+    num_row = len(ws['A'])
+    intDV = DataValidation(type="whole")
+    nameDV = DataValidation(type="textLength", operator="lessThanOrEqual", formula1=100)
+    emailDV = DataValidation(type="custom", formula1='ISNUMBER(MATCH("*@*.?*",D2,0))')
+    phoneDV = DataValidation(type="whole", operator="between", formula1=1000000000, formula2=9999999999)
+    dateDV = DataValidation(type="date", operator="lessThan", formula1='DATEVALUE("2021/1/1")')
+    if wsName == "customer":
+        intDV.add(f'A2:A{num_row}')
+        nameDV.add(f'B2:C{num_row}')
+        emailDV.add(f'D2:D{num_row}')
+        phoneDV.add(f'E2:E{num_row}')
+        ws.add_data_validation(intDV)
+        ws.add_data_validation(nameDV)
+        ws.add_data_validation(emailDV)
+        ws.add_data_validation(phoneDV)
+    elif wsName == "invoice":
+        intDV.add(f'A2:B{num_row}')
+        dateDV.add(f'C2:C{num_row}')
+        ws.add_data_validation(intDV)
+        ws.add_data_validation(dateDV)
+    elif wsName == "invoice_list":
+        intDV.add(f'A2:C{num_row}')
+        ws.add_data_validation(intDV)
+    elif wsName == "product":
+        nameDV.add(f'B2:B{num_row}')
+        ws.add_data_validation(nameDV)
+        intDV.add(f'A2:A{num_row}')
+        intDV.add(f'C2:C{num_row}')
+        ws.add_data_validation(intDV)
+
 ## insert data into dict
 wb = load_workbook('./data_tables/shopdata.xlsx')
 
@@ -120,9 +152,11 @@ def createInvoice(invoiceID):
             invoice.write(f'{item["Item"]}          {item["Quantity"]}        ${item["Price"]}.00            ${item["Amount"]}.00 \n \n')
         invoice.write(f"SUBTOTAL:${total}.00\n TAX:${round(total * 0.1, 2)}")
 
-# if __name__ == '__main__':
-#     print("***creating invoice***")
-#     createInvoice(2)
-#     print("***invoice successfully created***")
+if __name__ == '__main__':
+    print('.....validating data.....')
+    validateWB("./data_tables", "shopdata.xlsx")
+    print(".....creating invoice.....")
+    createInvoice(2)
+    print("***invoice successfully created***")
 
 
