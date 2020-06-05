@@ -1,16 +1,62 @@
 from openpyxl import load_workbook
+from openpyxl import Workbook
 from openpyxl.worksheet.datavalidation import DataValidation
 import os
 import datetime
 
 ## data merging
+def transferWSData(ws):
+    data = []
+    num_row = len(ws['A'])
+    num_col = len(ws[1])
+
+    for row in ws.iter_rows(min_row=2,max_col=num_col,max_row=num_row):
+        row_list = []
+        for i in range(0,num_col):
+            row_list.append(row[i].value)
+        data.append(row_list)
+    return data
+
+def appendData(data, new_ws):
+    for row in data:
+        new_ws.append(row)
+
 def merge_data(directory, filename):
+    path = os.path.join(directory, filename)
+    wb = load_workbook(path)
+
+    new_wb = Workbook()
+    new_invoice_ws = new_wb.create_sheet("invoice")
+    new_invoice_ws.append(["Invoice_ID","Customer_ID", "Date_issued"])
+    new_customer_ws = new_wb.create_sheet("customer")
+    new_customer_ws.append(["ID","FirstName", "LastName", "Email", "Phone#"])
+    new_invoice_list_ws = new_wb.create_sheet("invoice_list")
+    new_invoice_list_ws.append(["Item_ID","Invoice_ID","Quantity"])
+    new_product_ws = new_wb.create_sheet("product")
+    new_product_ws.append(["Item_ID", "Item_name", "Item_price"])
+    new_wb.remove(new_wb['Sheet'])
+    print(new_wb.sheetnames)
+
+    invoice_ws = wb["invoice"]
+    customer_ws = wb["customer"]
+    invoice_list_ws = wb["invoice_list"]
+    product_ws = wb["product"]
     
+    invoice_data = transferWSData(invoice_ws)
+    customer_data = transferWSData(customer_ws)
+    invoice_list_data = transferWSData(invoice_list_ws)
+    product_data = transferWSData(product_ws)
+
+    #append the appropriate table
+    appendData(invoice_data, new_invoice_ws)
+    appendData(customer_data, new_customer_ws)
+    appendData(invoice_list_data, new_invoice_list_ws)
+    appendData(product_data, new_product_ws)
+
+    new_wb.save("merged.xlsx")
 
 ## data validation
 def validateWB(directory, filename):
-
-    isDataValid = False
     ws_list = ["customer", "invoice", "invoice_list", "product"]
     missing_ws_list = []
     path = os.path.join(directory, filename)
@@ -24,8 +70,6 @@ def validateWB(directory, filename):
                 missing_ws_list.append(name)
         if len(missing_ws_list) != 0:
             raise EnvironmentError
-
-
     except EnvironmentError:
         print("Data is invalid due to the following reason:")
         print(f'Missing WorkSheet:')
@@ -46,7 +90,7 @@ def validateWB(directory, filename):
     validateWS(invoice_list_ws, "invoice_list")
     validateWS(product_ws, "product")
 
-    wb.save('./data_tables/shopdata.xlsx')
+    wb.save(path)
 
 def validateWS(ws, wsName):
     num_row = len(ws['A'])
@@ -127,7 +171,7 @@ storeInvoiceList(invoice_list_ws, invoice_list_dict)
 def createInvoice(invoiceID):
     if invoiceID not in invoice_dict:
         return "invoice does not exist"
-    
+
     customerID = invoice_dict[invoiceID]["Customer_ID"]
     date = invoice_dict[invoiceID]['Date_issued']
     firstName = customer_dict[customerID]['FirstName']
@@ -154,9 +198,11 @@ def createInvoice(invoiceID):
 
 if __name__ == '__main__':
     print('.....validating data.....')
+    invoice_id = input("ID of the invoice you want to print:  ")
     validateWB("./data_tables", "shopdata.xlsx")
     print(".....creating invoice.....")
-    createInvoice(2)
+    createInvoice(int(invoice_id))
     print("***invoice successfully created***")
+    # merge_data("./data_tables", "shopdata.xlsx")
 
 
