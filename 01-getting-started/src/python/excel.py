@@ -130,19 +130,7 @@ def validateWS(ws, wsName):
         ws.add_data_validation(intDV)
 
 ## insert data into dict
-wb = load_workbook('./data_tables/shopdata.xlsx')
-
-invoice_ws = wb["invoice"]
-customer_ws = wb["customer"]
-invoice_list_ws = wb["invoice_list"]
-product_ws = wb["product"]
-
-customer_dict = {}
-product_dict = {}
-invoice_dict = {}
-invoice_list_dict = {}
-
-def storeWbIntoDict(ws, targetDict):
+def storeWSIntoDict(ws, targetDict):
     num_row = len(ws['A'])
     num_col = len(ws[1])
     header_list = ws[1]
@@ -166,16 +154,35 @@ def storeInvoiceList(ws, targetDict):
         else:
             targetDict[invoice_key] = [{header_list[0].value: row[0].value, header_list[2].value: row[2].value}]
 
-
-storeWbIntoDict(customer_ws,customer_dict)
-storeWbIntoDict(product_ws,product_dict)
-storeWbIntoDict(invoice_ws,invoice_dict)
-storeInvoiceList(invoice_list_ws, invoice_list_dict)
-
 ## create invoice from dictionaries
 
-def createInvoice(invoiceID):
+def createInvoice(invoiceID, from_wb_dir):
+    print(".....creating invoice.....")
+    try:
+        wb = load_workbook(from_wb_dir)
+    except IOError:
+        print("File not found")
+        return "File not found"
+
+    invoice_ws = wb["invoice"]
+
+    customer_ws = wb["customer"]
+    invoice_list_ws = wb["invoice_list"]
+    product_ws = wb["product"]
+
+    customer_dict = {}
+    product_dict = {}
+    invoice_dict = {}
+    invoice_list_dict = {}
+
+    storeWSIntoDict(customer_ws,customer_dict)
+    storeWSIntoDict(product_ws,product_dict)
+    storeWSIntoDict(invoice_ws,invoice_dict)
+    storeInvoiceList(invoice_list_ws, invoice_list_dict)
+    print(invoice_list_dict)
+
     if invoiceID not in invoice_dict:
+        print("invoice does not exist")
         return "invoice does not exist"
 
     customerID = invoice_dict[invoiceID]["Customer_ID"]
@@ -201,14 +208,14 @@ def createInvoice(invoiceID):
         for item in invoice_item_chart:
             invoice.write(f'{item["Item"]}          {item["Quantity"]}        ${item["Price"]}.00            ${item["Amount"]}.00 \n \n')
         invoice.write(f"SUBTOTAL:${total}.00\n TAX:${round(total * 0.1, 2)}")
+    print("***invoice successfully created***")
+    return "invoice created"
 
 if __name__ == '__main__':
     print('.....validating data.....')
     invoice_id = input("ID of the invoice you want to print:  ")
     validateWB("./data_tables", "shopdata.xlsx")
-    print(".....creating invoice.....")
-    createInvoice(int(invoice_id))
-    print("***invoice successfully created***")
+    createInvoice(int(invoice_id), './data_tables/shopdata.xlsx')
     merge_data("./data_tables", "shopdata.xlsx")
 
 

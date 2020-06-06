@@ -1,18 +1,14 @@
 Invoice For:
- Jessica Johnson 
- Jessica.J@gmail.com 
+ Dwan Wang 
+ Dwan.W@gmail.com 
  
-Invoice ID: 7 
- Sent: 2020-05-11 
- Due: 2020-05-25 
+Invoice ID: 3 
+ Sent: 2020-06-06 
+ Due: 2020-06-20 
  
 ITEM            Quantity    Unit Price      Amount 
  
-tan trench          3        $180.00            $540.00 
+awesome code          10        $99.00            $990.00 
  
-black jean jacket          3        $90.00            $270.00 
- 
-read beanie          1        $18.00            $18.00 
- 
-SUBTOTAL:$828.00
- TAX:$82.8
+SUBTOTAL:$990.00
+ TAX:$99.0
