@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice API</title>
+</head>
+
+<body>
+    <div class="main">
+        {% for item in data %}
+            <div>
+                <h2>{{item}}</h2>
+                {% for ID in data[item] %}
+                    <div>
+                        <span>ID: {{ID}}</span>
+                        {% for property in data[item][ID] %}
+                            <span>{{property}}: {{data[item][ID][property]}}</span>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

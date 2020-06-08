@@ -154,6 +154,26 @@ def storeInvoiceList(ws, targetDict):
         else:
             targetDict[invoice_key] = [{header_list[0].value: row[0].value, header_list[2].value: row[2].value}]
 
+def storeWBIntoObject(wb_dir):
+    wb = load_workbook(wb_dir)
+
+    invoice_ws = wb["invoice"]
+    customer_ws = wb["customer"]
+    invoice_list_ws = wb["invoice_list"]
+    product_ws = wb["product"]
+
+    customer_dict = {}
+    product_dict = {}
+    invoice_dict = {}
+    invoice_list_dict = {}
+
+    storeWSIntoDict(customer_ws,customer_dict)
+    storeWSIntoDict(product_ws,product_dict)
+    storeWSIntoDict(invoice_ws,invoice_dict)
+    storeInvoiceList(invoice_list_ws, invoice_list_dict)
+
+    return {"invoice": invoice_dict, "customer": customer_dict, "invoice_list":invoice_list_dict, "product": product_dict}
+
 ## create invoice from dictionaries
 
 def createInvoice(invoiceID, from_wb_dir):
@@ -179,7 +199,6 @@ def createInvoice(invoiceID, from_wb_dir):
     storeWSIntoDict(product_ws,product_dict)
     storeWSIntoDict(invoice_ws,invoice_dict)
     storeInvoiceList(invoice_list_ws, invoice_list_dict)
-    print(invoice_list_dict)
 
     if invoiceID not in invoice_dict:
         print("invoice does not exist")
