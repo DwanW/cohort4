@@ -14,7 +14,7 @@
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
     "jest": "^25.1.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
