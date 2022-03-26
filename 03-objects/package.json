@@ -18,6 +18,6 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.6"
   }
 }
